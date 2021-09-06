@@ -5,8 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Comms</title>
+    <link rel="stylesheet" href="./styles/home.css">
 </head>
 <body>
-    
+    <div class="main">
+        <div class="header">
+            <div class="commsicon">Comms</div>
+            <div class="searchbar">
+                <input type="text" id="searchbar" placeholder="search">
+            </div>
+        </div>
+        <div class="body">
+            <div class="profile-post-block">
+                <div class="profile-details"></div>
+                <div class="add-post">
+                    <h3>Create Post</h3>
+                    <form onsubmit="event.preventDefault()">
+                        <textarea id="posttext" cols="30" rows="10"></textarea>
+                        <div class="addimages">
+                            <input type="file" id="image1">
+                            <input type="file" id="image2">
+                            <input type="file" id="image3">
+                            <input type="file" id="image4">
+                        </div>
+                        <button type="submit" class="addpostbtn">Post</button>
+                    </form>
+                </div>
+            </div>
+            <div class="posts">
+                <div class="postscontainer">
+                    <div class="postheading">
+                        <span>
+                            Home
+                        </span>
+                    </div>
+                    <div class="postsbody"></div>
+                </div>
+            </div>
+            <div class="later userscontainer">
+                <div class="users"></div>
+            </div>
+        </div>
+    </div>
+    <script src="./scripts/home.js"></script>
 </body>
 </html>
