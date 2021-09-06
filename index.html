@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Comms</title>
+    <link rel="stylesheet" href="./styles/landing.css">
+</head>
+<body>
+    <div class="leftblock">
+        <div class="whiteover">
+        </div>
+        <div class="text">
+            <h1 class="headingtext">
+            Welcome to Comms
+            </h1>
+            <div class="registercontainer">
+                <form class="registerform" onsubmit="event.preventDefault()">
+                    <h2>Register</h2>
+                    <div class="reginputcontainer">
+                        <div>
+                            <input class="rinputtext" id="remail" type ="text" placeholder="Email" required>
+                        </div>
+                        <div>
+                            <input class="rinputtext" id="rname" type ="text" placeholder="Full Name" required>
+                        </div>
+                        <div>
+                            <input class="rinputtext" id="rusername" type ="text" placeholder="Username" required>
+                        </div>
+                        <div>
+                            <input class="rinputtext" id="rpassword" type ="text" placeholder="Password" required>
+                        </div>
+                        <div>
+                            <input class="rinputtext" id="rtag" type ="text" placeholder="User Tag" required>
+                        </div>
+                        <div>
+                            <button type="submit" class="rinputsubmit">Create Account</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="rightblock">
+        <div class="signincontainer">
+            <form class="signinform" onsubmit="event.preventDefault(), login()">
+                <h2>Sign In</h2>
+                <div class="sgi-inputcontainer">
+                    <div>
+                        <input class="sinputtext" id="semail" type ="text" placeholder="Email" required>
+                    </div>
+                    <div>
+                        <input class="sinputtext" id="spassword" type ="password" placeholder="password" required>
+                    </div>
+                    <div>
+                        <button type="submit" class="sinputsubmit">Sign In</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script src="./scripts/landing.js"></script>
+</body>
+</html>
