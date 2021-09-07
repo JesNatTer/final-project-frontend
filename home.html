@@ -20,13 +20,31 @@
                 <div class="profile-details"></div>
                 <div class="add-post">
                     <h3>Create Post</h3>
-                    <form onsubmit="event.preventDefault()">
-                        <textarea id="posttext" cols="30" rows="10"></textarea>
+                    <form onsubmit="event.preventDefault(), createpost()">
+                        <textarea id="posttext" cols="30" rows="6" placeholder="Enter text here..."></textarea>
                         <div class="addimages">
-                            <input type="file" id="image1">
-                            <input type="file" id="image2">
-                            <input type="file" id="image3">
-                            <input type="file" id="image4">
+                            <input type="file" id="image1" onchange="uploadimage(1)" class="postimageinputs">
+                            <input type="file" id="image2" onchange="uploadimage(2)" disabled class="postimageinputs">
+                            <input type="file" id="image3" onchange="uploadimage(3)" disabled class="postimageinputs">
+                            <input type="file" id="image4" onchange="uploadimage(4)" disabled class="postimageinputs">
+                        </div>
+                        <div class="addimgpreviews">
+                            <div class="imgpreview 1">
+                                <img src="" alt="" class="imgp1">
+                                <i class="fas fa-times removeimgicon removeicon1" onclick="removeimg(1)"></i>
+                            </div>
+                            <div class="imgpreview 2">
+                                <img src="" alt="" class="imgp2">
+                                <i class="fas fa-times removeimgicon removeicon2" onclick="removeimg(2)"></i>
+                            </div>
+                            <div class="imgpreview 3">
+                                <img src="" alt="" class="imgp3">
+                                <i class="fas fa-times removeimgicon removeicon3" onclick="removeimg(3)"></i>
+                            </div>
+                            <div class="imgpreview 4">
+                                <img src="" alt="" class="imgp4">
+                                <i class="fas fa-times removeimgicon removeicon4" onclick="removeimg(4)"></i>
+                            </div>
                         </div>
                         <button type="submit" class="addpostbtn">Post</button>
                     </form>
@@ -48,5 +66,6 @@
         </div>
     </div>
     <script src="./scripts/home.js"></script>
+    <script src="https://kit.fontawesome.com/1e2396cf96.js" crossorigin="anonymous"></script>
 </body>
 </html>

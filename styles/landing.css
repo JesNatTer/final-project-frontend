@@ -192,3 +192,7 @@ body{
     color: white;
     width: 50%;
 }
+
+input:focus{
+    outline-width: 0;
+}

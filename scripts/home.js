@@ -1,6 +1,18 @@
 const mystorage = window.localStorage
 let user = JSON.parse(mystorage['userdetails'])
 
+function postdata(){
+    let postobject = {}
+    postobject['userid'] = user.userId
+    postobject['text'] = document.querySelector('#posttext').value
+    postobject['image_1'] = document.querySelector('.imgp1').src
+    postobject['image_2'] = document.querySelector('.imgp2').src
+    postobject['image_3'] = document.querySelector('.imgp3').src
+    postobject['image_4'] = document.querySelector('.imgp4').src
+    postobject['source_id'] = 0
+    return postobject
+}
+
 function profiledetails(){
     fetch(`https://clonebackend.herokuapp.com/user/${user.userId}/`)
     .then(res => res.json())
@@ -116,4 +128,238 @@ function followuser(e){
         alert('follow successful')
         e.target.innerHTML = 'followed'
     })
+}
+
+// document.querySelectorAll('.postimageinputs').forEach(input => input.addEventListener('change', imgpreviewname))
+
+function uploadimage(option) {
+    const image = document.querySelector(`.imgp${option}`);
+    const file = document.querySelector(`#image${option}`).files[0];
+    const reader = new FileReader();
+    image.classList.toggle('active')
+    document.querySelector(`.removeicon${option}`).classList.toggle('active')
+  
+    reader.addEventListener("load", function () {
+      image.src = reader.result;
+    }, false);
+  
+    if (file) {
+      reader.readAsDataURL(file);
+      if (option != 4){
+          document.querySelector(`#image${option + 1}`).removeAttribute('disabled')
+      }
+    }
+  }
+
+function removeimg(option) {
+    if (option == 1){
+        const image = document.querySelector(`.imgp${option}`);
+        image.src = ''
+        let blank = ''
+        if (document.querySelector(`.imgp4`).src[0] =='d'&& document.querySelector(`.imgp3`).src[0] == 'd' && document.querySelector(`.imgp2`).src[0] == 'd'){
+            document.querySelector(`.imgp1`).src = document.querySelector(`.imgp2`).src
+            document.querySelector(`.imgp2`).src = document.querySelector(`.imgp3`).src
+            document.querySelector(`.imgp3`).src = document.querySelector(`.imgp4`).src
+            document.querySelector(`.imgp4`).src = blank
+            document.querySelector(`#image4`).setAttribute('disabled', '')
+            document.querySelector(`.imgp4`).classList.toggle('active')
+            document.querySelector(`.removeicon4`).classList.toggle('active')
+            return
+        }
+        if (document.querySelector(`.imgp3`).src[0] == 'd' && document.querySelector(`.imgp2`).src[0] == 'd'){
+            document.querySelector(`.imgp1`).src = document.querySelector(`.imgp2`).src
+            document.querySelector(`.imgp2`).src = document.querySelector(`.imgp3`).src
+            document.querySelector(`.imgp3`).src = blank
+            document.querySelector(`#image4`).setAttribute('disabled', '')
+            document.querySelector(`#image3`).setAttribute('disabled', '')
+            document.querySelector(`.imgp3`).classList.toggle('active')
+            document.querySelector(`.removeicon3`).classList.toggle('active')
+            return
+        }
+        if (document.querySelector(`.imgp2`).src[0] =='d'){
+            document.querySelector(`.imgp1`).src = document.querySelector(`.imgp2`).src
+            document.querySelector(`.imgp2`).src = blank
+            document.querySelector(`#image3`).setAttribute('disabled', '')
+            document.querySelector(`#image2`).setAttribute('disabled', '')
+            document.querySelector(`.imgp2`).classList.toggle('active')
+            document.querySelector(`.removeicon2`).classList.toggle('active')
+            return
+        }
+        if (document.querySelector(`.imgp2`).src[0] =='h'){
+            document.querySelector(`#image2`).setAttribute('disabled', '')
+            image.classList.toggle('active')
+            document.querySelector(`.removeicon${option}`).classList.toggle('active')
+        }
+    }
+    if (option == 2){
+        const image = document.querySelector(`.imgp${option}`);
+        image.src = ''
+        let blank = ''
+        if (document.querySelector(`.imgp4`).src[0] =='d'&& document.querySelector(`.imgp3`).src[0] == 'd'){
+            document.querySelector(`.imgp2`).src = document.querySelector(`.imgp3`).src
+            document.querySelector(`.imgp3`).src = document.querySelector(`.imgp4`).src
+            document.querySelector(`.imgp4`).src = blank
+            document.querySelector(`#image4`).setAttribute('disabled', '')
+            document.querySelector(`.imgp4`).classList.toggle('active')
+            document.querySelector(`.removeicon4`).classList.toggle('active')
+            return
+        }
+        if (document.querySelector(`.imgp3`).src[0] == 'd'){
+            document.querySelector(`.imgp2`).src = document.querySelector(`.imgp3`).src
+            document.querySelector(`.imgp3`).src = blank
+            document.querySelector(`#image4`).setAttribute('disabled', '')
+            document.querySelector(`#image3`).setAttribute('disabled', '')
+            document.querySelector(`.imgp3`).classList.toggle('active')
+            document.querySelector(`.removeicon3`).classList.toggle('active')
+            return
+        }
+        if (document.querySelector(`.imgp3`).src[0] =='h'){
+            document.querySelector(`#image3`).setAttribute('disabled', '')
+            image.classList.toggle('active')
+            document.querySelector(`.removeicon${option}`).classList.toggle('active')
+        }
+    }
+    if (option == 3){
+        const image = document.querySelector(`.imgp${option}`);
+        image.src = ''
+        let blank = ''
+        if (document.querySelector(`.imgp4`).src[0] =='d'){
+            document.querySelector(`.imgp3`).src = document.querySelector(`.imgp4`).src
+            document.querySelector(`.imgp4`).src = blank
+            document.querySelector(`#image4`).setAttribute('disabled', '')
+            document.querySelector(`.imgp4`).classList.toggle('active')
+            document.querySelector(`.removeicon4`).classList.toggle('active')
+            return
+        }
+        if (document.querySelector(`.imgp4`).src[0] =='h'){
+            document.querySelector(`#image4`).setAttribute('disabled', '')
+            image.classList.toggle('active')
+            document.querySelector(`.removeicon${option}`).classList.toggle('active')
+        }
+    }
+    if (option == 4){
+        const image = document.querySelector(`.imgp${option}`);
+        document.querySelector(`.removeicon${option}`).classList.toggle('active')
+        image.src = ''
+        image.classList.toggle('active')
+    }
+}
+
+function createpost(){
+    let post = postdata()
+    let postobject = {}
+    if (post.text){
+        if (post.image_4[0] == 'd' && post.image_3[0] == 'd' && post.image_2[0] == 'd' && post.image_1[0] == 'd'){
+             postobject = {
+                 'sourceId' : 0,
+                 'posttext' : post.text,
+                 'image_1' : post.image_1,
+                 'image_2' : post.image_2,
+                 'image_3' : post.image_3,
+                 'image_4' : post.image_4,
+                 "created_time": new Date().getDate() + new Date().getTime(),
+                 "datetime": new Date().getDate() + new Date().getTime()
+            }
+        }
+        if (post.image_4[0] == 'h' && post.image_3[0] == 'd' && post.image_2[0] == 'd' && post.image_1[0] == 'd'){
+            postobject = {
+                'sourceId' : 0,
+                'posttext' : post.text,
+                'image_1' : post.image_1,
+                'image_2' : post.image_2,
+                'image_3' : post.image_3,
+                "created_time": new Date().getDate() + new Date().getTime(),
+                "datetime": new Date().getDate() + new Date().getTime()
+            }
+        }
+        if (post.image_4[0] == 'h' && post.image_3[0] == 'h' && post.image_2[0] == 'd' && post.image_1[0] == 'd'){
+            postobject = {
+                'sourceId' : 0,
+                'posttext' : post.text,
+                'image_1' : post.image_1,
+                'image_2' : post.image_2,
+                "created_time": new Date().getDate() + new Date().getTime(),
+                "datetime": new Date().getDate() + new Date().getTime()
+            }
+        }
+        if (post.image_4[0] == 'h' && post.image_3[0] == 'h' && post.image_2[0] == 'h' && post.image_1[0] == 'd'){
+            postobject = {
+                'sourceId' : 0,
+                'posttext' : post.text,
+                'image_1' : post.image_1,
+                "created_time": new Date().getDate() + new Date().getTime(),
+                "datetime": new Date().getDate() + new Date().getTime()
+            }
+        }
+        if (post.image_1[0] == 'h'){
+            postobject = {
+                'sourceId' : 0,
+                'posttext' : post.text,
+                "created_time": new Date().getDate() + new Date().getTime(),
+           "datetime": new Date().getDate() + new Date().getTime()
+            }
+            console.log(123)
+            console.log(postobject)
+        }
+    }
+    if (post.image_4 == 'd' && post.image_3 == 'd' && post.image_2 == 'd' && post.image1 == 'd'){
+        postobject = {
+            'sourceId' : 0,
+            'image_1' : post.image_1,
+            'image_2' : post.image_2,
+            'image_3' : post.image_3,
+            'image_4' : post.image_4,
+            "created_time": new Date().getDate() + new Date().getTime(),
+           "datetime": new Date().getDate() + new Date().getTime()
+       }
+   }
+   if (post.image_4[0] == 'h' && post.image_3[0] == 'd' && post.image_2[0] == 'd' && post.image_1[0] == 'd'){
+       postobject = {
+           'sourceId' : 0,
+           'image_1' : post.image_1,
+           'image_2' : post.image_2,
+           'image_3' : post.image_3,
+           "created_time": new Date().getDate() + new Date().getTime(),
+           "datetime": new Date().getDate() + new Date().getTime()
+       }
+   }
+   if (post.image_4[0] == 'h' && post.image_3[0] == 'h' && post.image_2[0] == 'd' && post.image_1[0] == 'd'){
+       postobject = {
+           'sourceId' : 0,
+           'image_1' : post.image_1,
+           'image_2' : post.image_2,
+           "created_time": new Date().getDate() + new Date().getTime(),
+           "datetime": new Date().getDate() + new Date().getTime()
+       }
+   }
+   if (post.image_4[0] == 'h' && post.image_3[0] == 'h' && post.image_2[0] == 'h' && post.image_1[0] == 'd'){
+       console.log(post.image_1, post.image_2)
+       postobject = {
+           'sourceId' : 0,
+           'image_1' : post.image_1,
+           "created_time": new Date().getDate() + new Date().getTime(),
+           "datetime": new Date().getDate() + new Date().getTime()
+       }
+   }
+   if (!post.text && post.image_1[0] == 'h'){
+       alert('Post must at least include text or an image')
+       return
+   }
+    fetch(`https://clonebackend.herokuapp.com/post/${post.userid}/`,{
+        method: 'POST',
+        headers:{
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            postobject
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        alert('Post Made successfully')
+        showposts()
+    }
+    )
+    ;
 }
