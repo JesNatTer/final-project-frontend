@@ -65,6 +65,23 @@
             </div>
         </div>
     </div>
+    <div class="postmodal">
+        <i class="fas fa-times closepostmodal" onclick="closepostmodal()"></i>
+        <div class="modalpostcontainer">
+            <div class="post"></div>
+            <div class="addcomment">
+                <h4 class="addcommentheading">Add comment</h4>
+                <textarea cols="30" rows="5" class="addcommenttext"></textarea>
+                <button class="addcommentbtn" onclick='addcomment()'>Post</button>
+            </div>
+            <div class="postcomments">
+                <h4 class="postcommentsheading">Comments</h4>
+                <div class="postcommentsbody"></div>
+            </div>
+        </div>
+    </div>
+    <div class="usermodal"></div>
+    <div class="addpostmodal"></div>
     <script src="./scripts/home.js"></script>
     <script src="https://kit.fontawesome.com/1e2396cf96.js" crossorigin="anonymous"></script>
 </body>

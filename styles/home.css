@@ -13,6 +13,7 @@ body{
     max-width: 100vw;
     max-height: 100vh;
     overflow-y: hidden;
+    display: grid;
 }
 
 .main{
@@ -89,6 +90,18 @@ input:focus{
     border: 1px solid rgb(132, 0, 255);
     display: flex;
     flex-direction: column-reverse;
+    height: 100%;
+}
+
+.postscontainer{
+    height: 100%;
+}
+
+.noposts{
+    padding-left: 20px;
+    padding-top: 20px;
+    color: rgb(227, 223, 255);
+    font-size: 20px;
 }
 
 .postheading{
@@ -106,6 +119,11 @@ input:focus{
     font-weight: 600;
 }
 
+.postsbody{
+    display: flex;
+    flex-direction: column-reverse;
+}
+
 .post{
     border-top: 1px solid white;
     border-bottom: 1px solid white;
@@ -120,15 +138,96 @@ input:focus{
     grid-template-rows: 60px 1fr;
 }
 
-.postimage1{
+.postimages{
     width: 90%;
     padding-top: 20px;
     border-radius: 15px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
 }
 
-.postimage1 img{
+.postimages img{
     width: 100%;
     height: 100%;
+    object-fit: cover;
+}
+
+.noimg{
+    display: none;
+}
+
+.notext{
+    display: none;
+}
+
+.imgs4 .pimage1{
+    border-top-left-radius: 15px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+
+.imgs4 .pimage2{
+    border-top-right-radius: 15px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+.imgs4 .pimage3{
+    border-bottom-left-radius: 15px;
+    padding-right: 5px;
+    padding-top: 5px;
+}
+
+.imgs4 .pimage4{
+    border-bottom-right-radius: 15px;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+.imgs3 .pimage1{
+    grid-column: 1/2;
+    grid-row: 1/3;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding-right: 5px;
+}
+
+.imgs3 .pimage2{
+    grid-column: 2/3;
+    grid-row: 1/2;
+    border-top-right-radius: 15px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+.imgs3 .pimage3{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    border-bottom-right-radius: 15px;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+.imgs2 .pimage1{
+    grid-column: 1/2;
+    grid-row: 1/3;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding-right: 5px;
+}
+
+.imgs2 .pimage2{
+    grid-column: 2/3;
+    grid-row: 1/3;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-left: 5px;
+}
+
+.imgs1 .pimage1{
+    grid-column: 1/3;
+    grid-row: 1/3;
     border-radius: 15px;
 }
 
@@ -360,6 +459,7 @@ textarea{
     position: relative;
     background: rgb(20, 20, 20);
     border: 1px solid white;
+    height: 90px;
 }
 
 .imgp1, .imgp2, .imgp3, .imgp4{
@@ -387,4 +487,186 @@ textarea{
 
 .removeicon1.active, .removeicon2.active, .removeicon3.active, .removeicon4.active{
     visibility: visible;
+}
+
+.bottomsection{
+    width: 90%;
+    height: 50px;
+    grid-column: 2/3;
+    border-top: 1px solid rgb(132, 0, 255);
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+}
+
+.viewpost{
+    color: rgb(227, 223, 255);
+    padding: 6px 5px;
+    place-items: center;
+    border: 1px solid rgb(132, 0, 255);
+    border-radius: 5px;
+    background: rgb(41, 41, 41);
+    margin-right: 20px;
+    transition: 0.5s ease;
+}
+
+.likepost{
+    color: rgb(227, 223, 255);
+    padding: 6px 10px;
+    place-items: center;
+    border: 1px solid rgb(132, 0, 255);
+    border-radius: 5px;
+    background: rgb(41, 41, 41);
+    margin-right: 20px;
+    transition: 0.5s ease;
+}
+
+.retweetpost{
+    color: rgb(227, 223, 255);
+    padding: 6px 5px;
+    place-items: center;
+    border: 1px solid rgb(132, 0, 255);
+    border-radius: 5px;
+    background: rgb(41, 41, 41);
+    margin-right: 20px;
+    transition: 0.5s ease;
+}
+
+.viewpost:hover, .likepost:hover, .retweetpost:hover{
+    background: rgb(132, 0, 255);
+}
+
+.postmodal{
+    opacity: 0;
+    pointer-events: none;
+    position: absolute;
+    place-self: center;
+    background: rgba(0, 0, 0, 0.5);
+    display: grid;
+    place-content: center;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    bottom: 0;
+    transition: 1s ease;
+}
+
+.postmodal.active{
+    opacity: 1;
+    pointer-events: inherit;
+}
+
+.modalpostcontainer{
+    width: 550px;
+    height: auto;
+    background: black;
+    overflow-y: scroll;
+}
+
+.closepostmodal{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 25px;
+    color: rgb(227, 223, 255);
+}
+
+.addcomment{
+    width: 100%;
+    padding: 20px;
+    border-bottom: 1px solid rgb(227, 223, 255);
+    background: rgb(20, 20, 20);
+}
+
+.addcommentheading{
+    color: rgb(227, 223, 255);
+    margin-bottom: 10px;
+}
+
+.addcommenttext{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.addcommentbtn{
+    background: rgb(41, 41, 41);
+    padding: 5px 10px;
+    border: 1px solid rgb(132, 0, 255);
+    border-radius: 5px;
+    color: rgb(227, 223, 255);
+    transition: 0.5s ease;
+}
+
+.addcommentbtn:hover{
+    background: rgb(132, 0, 255);
+}
+
+textarea:focus{
+    outline-width: 0;
+}
+
+.likepost.liked{
+    background: rgb(221, 48, 48);
+}
+
+.postcommentsheading{
+    color: rgb(227, 223, 255);
+    padding: 20px;
+    background-color: rgb(20, 20, 20);
+}
+
+.postcommentsbody{
+    color: rgb(227, 223, 255);
+}
+
+.nocomments{
+    padding: 20px;
+    background: rgb(29, 29, 29);
+}
+
+.postcomment{
+    padding: 20px;
+    width: 100%;
+    display: grid;
+    border-top: 1px solid rgb(227, 223, 255);
+    border-bottom: 1px solid rgb(227, 223, 255);
+    grid-template-columns: 100px 1fr;
+    grid-template-rows: 60px 1fr;
+    background-color: rgb(29, 29, 29);
+}
+
+.com-usericon{
+    grid-column: 1/2;
+    grid-row: 1/2;
+    width: 100%;
+}
+
+.com-usericon img{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.com-username-tag{
+    grid-column: 2/3;
+    grid-row: 1/2;
+    color: rgb(227, 223, 255);
+}
+
+.com-tag{
+    font-size: 15px;
+    color: rgb(255, 153, 0);
+}
+
+.com-text{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    color: rgb(227, 223, 255);
+}
+
+.followed{
+    background:rgb(132, 0, 255);
 }
