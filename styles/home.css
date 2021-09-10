@@ -313,11 +313,15 @@ input:focus{
 }
 
 .minus-button{
+    font-size: 0;
+}
+
+.usersblockbutton{
     display: none;
 }
 
-.usersplus-button{
-    display: none;
+.usersminus-button{
+    font-size: 0;
 }
 
 .profilename-tag{
