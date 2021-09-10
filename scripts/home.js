@@ -199,11 +199,12 @@ function postclass(){
             }
             if (post.querySelector('.pimage4').src != 'https://comms-sns.netlify.app/null'){
                 post.querySelector('.postimages').classList.add('imgs4')
+                
             }
             if (post.querySelector('.pimage1').src != 'https://comms-sns.netlify.app/null' &&
                 post.querySelector('.pimage2').src != 'https://comms-sns.netlify.app/null' &&
                 post.querySelector('.pimage3').src != 'https://comms-sns.netlify.app/null' &&
-                post.querySelector('.pimage4').src == 'https://comms-sns.netlify.app/null'){
+                post.querySelector('.pimage4').src == null){
                 post.querySelector('.postimages').classList.add('imgs3')
                 post.querySelector('.pimage4').classList.add('noimg')
                 console.log('image 4 missing')
