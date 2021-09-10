@@ -218,9 +218,9 @@ function postclass(){
                 post.querySelector('.pimage3').classList.add('noimg')
             }
             if (post.querySelector('.pimage1').src != 'https://comms-sns.netlify.app/null' &&
-                post.querySelector('.pimage2').src == 'https://comms-sns.netlify.app/null' &&
-                post.querySelector('.pimage3').src == 'https://comms-sns.netlify.app/null' &&
-                post.querySelector('.pimage4').src == 'https://comms-sns.netlify.app/null'){
+                post.querySelector('.pimage2').src == null &&
+                post.querySelector('.pimage3').src == null &&
+                post.querySelector('.pimage4').src == null){
                 post.querySelector('.postimages').classList.add('imgs1')
                 post.querySelector('.pimage4').classList.add('noimg')
                 post.querySelector('.pimage3').classList.add('noimg')
