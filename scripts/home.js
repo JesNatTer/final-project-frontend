@@ -147,42 +147,42 @@ function postclass(){
     if (document.querySelector('.postsbody .post')){
         document.querySelectorAll('.postsbody .post').forEach( post => {
             console.log(post)
-            if (post.querySelector('.ptext').innerHTML == 'null'){
+            if (post.querySelector('.ptext').innerHTML == 'https://comms-sns.netlify.app/null'){
                 post.querySelector('.ptext').classList.add('notext')
                 console.log('hmmm')
             }
-            if (post.querySelector('.pimage4').src != 'null'){
+            if (post.querySelector('.pimage4').src != 'https://comms-sns.netlify.app/null'){
                 post.querySelector('.postimages').classList.add('imgs4')
             }
-            if (post.querySelector('.pimage1').src != 'null' &&
-                post.querySelector('.pimage2').src != 'null' &&
-                post.querySelector('.pimage3').src != 'null' &&
-                post.querySelector('.pimage4').src == 'null'){
+            if (post.querySelector('.pimage1').src != 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage2').src != 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage3').src != 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage4').src == 'https://comms-sns.netlify.app/null'){
                 post.querySelector('.postimages').classList.add('imgs3')
                 post.querySelector('.pimage4').classList.add('noimg')
                 console.log('image 4 missing')
             }
-            if (post.querySelector('.pimage1').src != 'null' &&
-                post.querySelector('.pimage2').src != 'null' &&
-                post.querySelector('.pimage3').src == 'null' &&
-                post.querySelector('.pimage4').src == 'null'){
+            if (post.querySelector('.pimage1').src != 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage2').src != 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage3').src == 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage4').src == 'https://comms-sns.netlify.app/null'){
                 post.querySelector('.postimages').classList.add('imgs2')
                 post.querySelector('.pimage4').classList.add('noimg')
                 post.querySelector('.pimage3').classList.add('noimg')
             }
-            if (post.querySelector('.pimage1').src != 'null' &&
-                post.querySelector('.pimage2').src == 'null' &&
-                post.querySelector('.pimage3').src == 'null' &&
-                post.querySelector('.pimage4').src == 'null'){
+            if (post.querySelector('.pimage1').src != 'https://comms-sns.netlify.app/https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage2').src == 'https://comms-sns.netlify.app/https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage3').src == 'https://comms-sns.netlify.app/https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage4').src == 'https://comms-sns.netlify.app/https://comms-sns.netlify.app/null'){
                 post.querySelector('.postimages').classList.add('imgs1')
                 post.querySelector('.pimage4').classList.add('noimg')
                 post.querySelector('.pimage3').classList.add('noimg')
                 post.querySelector('.pimage2').classList.add('noimg')
             }
-            if (post.querySelector('.pimage1').src == 'null' &&
-                post.querySelector('.pimage2').src == 'null' &&
-                post.querySelector('.pimage3').src == 'null' &&
-                post.querySelector('.pimage4').src == 'null'){
+            if (post.querySelector('.pimage1').src == 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage2').src == 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage3').src == 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage4').src == 'https://comms-sns.netlify.app/null'){
                 post.querySelector('.postimages').classList.add('noimg')
             }
             console.log('happened')
@@ -193,42 +193,42 @@ function postclass(){
     if (document.querySelector('.modalusercontainer .post')){
         document.querySelectorAll('.modalusercontainer .post').forEach( post => {
             console.log(post)
-            if (post.querySelector('.ptext').innerHTML == 'null'){
+            if (post.querySelector('.ptext').innerHTML == 'https://comms-sns.netlify.app/null'){
                 post.querySelector('.ptext').classList.add('notext')
                 console.log('hmmm')
             }
-            if (post.querySelector('.pimage4').src != 'null'){
+            if (post.querySelector('.pimage4').src != 'https://comms-sns.netlify.app/null'){
                 post.querySelector('.postimages').classList.add('imgs4')
             }
-            if (post.querySelector('.pimage1').src != 'null' &&
-                post.querySelector('.pimage2').src != 'null' &&
-                post.querySelector('.pimage3').src != 'null' &&
-                post.querySelector('.pimage4').src == 'null'){
+            if (post.querySelector('.pimage1').src != 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage2').src != 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage3').src != 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage4').src == 'https://comms-sns.netlify.app/null'){
                 post.querySelector('.postimages').classList.add('imgs3')
                 post.querySelector('.pimage4').classList.add('noimg')
                 console.log('image 4 missing')
             }
-            if (post.querySelector('.pimage1').src != 'null' &&
-                post.querySelector('.pimage2').src != 'null' &&
-                post.querySelector('.pimage3').src == 'null' &&
-                post.querySelector('.pimage4').src == 'null'){
+            if (post.querySelector('.pimage1').src != 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage2').src != 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage3').src == 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage4').src == 'https://comms-sns.netlify.app/null'){
                 post.querySelector('.postimages').classList.add('imgs2')
                 post.querySelector('.pimage4').classList.add('noimg')
                 post.querySelector('.pimage3').classList.add('noimg')
             }
-            if (post.querySelector('.pimage1').src != 'null' &&
-                post.querySelector('.pimage2').src == 'null' &&
-                post.querySelector('.pimage3').src == 'null' &&
-                post.querySelector('.pimage4').src == 'null'){
+            if (post.querySelector('.pimage1').src != 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage2').src == 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage3').src == 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage4').src == 'https://comms-sns.netlify.app/null'){
                 post.querySelector('.postimages').classList.add('imgs1')
                 post.querySelector('.pimage4').classList.add('noimg')
                 post.querySelector('.pimage3').classList.add('noimg')
                 post.querySelector('.pimage2').classList.add('noimg')
             }
-            if (post.querySelector('.pimage1').src == 'null' &&
-                post.querySelector('.pimage2').src == 'null' &&
-                post.querySelector('.pimage3').src == 'null' &&
-                post.querySelector('.pimage4').src == 'null'){
+            if (post.querySelector('.pimage1').src == 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage2').src == 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage3').src == 'https://comms-sns.netlify.app/null' &&
+                post.querySelector('.pimage4').src == 'https://comms-sns.netlify.app/null'){
                 post.querySelector('.postimages').classList.add('noimg')
             }
             console.log('happened')
