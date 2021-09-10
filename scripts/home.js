@@ -151,38 +151,38 @@ function postclass(){
                 post.querySelector('.ptext').classList.add('notext')
                 console.log('hmmm')
             }
-            if (post.querySelector('.pimage4').src != 'http://127.0.0.1:5500/null'){
+            if (post.querySelector('.pimage4').src != 'null'){
                 post.querySelector('.postimages').classList.add('imgs4')
             }
-            if (post.querySelector('.pimage1').src != 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage2').src != 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage3').src != 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage4').src == 'http://127.0.0.1:5500/null'){
+            if (post.querySelector('.pimage1').src != 'null' &&
+                post.querySelector('.pimage2').src != 'null' &&
+                post.querySelector('.pimage3').src != 'null' &&
+                post.querySelector('.pimage4').src == 'null'){
                 post.querySelector('.postimages').classList.add('imgs3')
                 post.querySelector('.pimage4').classList.add('noimg')
                 console.log('image 4 missing')
             }
-            if (post.querySelector('.pimage1').src != 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage2').src != 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage3').src == 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage4').src == 'http://127.0.0.1:5500/null'){
+            if (post.querySelector('.pimage1').src != 'null' &&
+                post.querySelector('.pimage2').src != 'null' &&
+                post.querySelector('.pimage3').src == 'null' &&
+                post.querySelector('.pimage4').src == 'null'){
                 post.querySelector('.postimages').classList.add('imgs2')
                 post.querySelector('.pimage4').classList.add('noimg')
                 post.querySelector('.pimage3').classList.add('noimg')
             }
-            if (post.querySelector('.pimage1').src != 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage2').src == 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage3').src == 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage4').src == 'http://127.0.0.1:5500/null'){
+            if (post.querySelector('.pimage1').src != 'null' &&
+                post.querySelector('.pimage2').src == 'null' &&
+                post.querySelector('.pimage3').src == 'null' &&
+                post.querySelector('.pimage4').src == 'null'){
                 post.querySelector('.postimages').classList.add('imgs1')
                 post.querySelector('.pimage4').classList.add('noimg')
                 post.querySelector('.pimage3').classList.add('noimg')
                 post.querySelector('.pimage2').classList.add('noimg')
             }
-            if (post.querySelector('.pimage1').src == 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage2').src == 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage3').src == 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage4').src == 'http://127.0.0.1:5500/null'){
+            if (post.querySelector('.pimage1').src == 'null' &&
+                post.querySelector('.pimage2').src == 'null' &&
+                post.querySelector('.pimage3').src == 'null' &&
+                post.querySelector('.pimage4').src == 'null'){
                 post.querySelector('.postimages').classList.add('noimg')
             }
             console.log('happened')
@@ -197,38 +197,38 @@ function postclass(){
                 post.querySelector('.ptext').classList.add('notext')
                 console.log('hmmm')
             }
-            if (post.querySelector('.pimage4').src != 'http://127.0.0.1:5500/null'){
+            if (post.querySelector('.pimage4').src != 'null'){
                 post.querySelector('.postimages').classList.add('imgs4')
             }
-            if (post.querySelector('.pimage1').src != 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage2').src != 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage3').src != 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage4').src == 'http://127.0.0.1:5500/null'){
+            if (post.querySelector('.pimage1').src != 'null' &&
+                post.querySelector('.pimage2').src != 'null' &&
+                post.querySelector('.pimage3').src != 'null' &&
+                post.querySelector('.pimage4').src == 'null'){
                 post.querySelector('.postimages').classList.add('imgs3')
                 post.querySelector('.pimage4').classList.add('noimg')
                 console.log('image 4 missing')
             }
-            if (post.querySelector('.pimage1').src != 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage2').src != 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage3').src == 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage4').src == 'http://127.0.0.1:5500/null'){
+            if (post.querySelector('.pimage1').src != 'null' &&
+                post.querySelector('.pimage2').src != 'null' &&
+                post.querySelector('.pimage3').src == 'null' &&
+                post.querySelector('.pimage4').src == 'null'){
                 post.querySelector('.postimages').classList.add('imgs2')
                 post.querySelector('.pimage4').classList.add('noimg')
                 post.querySelector('.pimage3').classList.add('noimg')
             }
-            if (post.querySelector('.pimage1').src != 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage2').src == 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage3').src == 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage4').src == 'http://127.0.0.1:5500/null'){
+            if (post.querySelector('.pimage1').src != 'null' &&
+                post.querySelector('.pimage2').src == 'null' &&
+                post.querySelector('.pimage3').src == 'null' &&
+                post.querySelector('.pimage4').src == 'null'){
                 post.querySelector('.postimages').classList.add('imgs1')
                 post.querySelector('.pimage4').classList.add('noimg')
                 post.querySelector('.pimage3').classList.add('noimg')
                 post.querySelector('.pimage2').classList.add('noimg')
             }
-            if (post.querySelector('.pimage1').src == 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage2').src == 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage3').src == 'http://127.0.0.1:5500/null' &&
-                post.querySelector('.pimage4').src == 'http://127.0.0.1:5500/null'){
+            if (post.querySelector('.pimage1').src == 'null' &&
+                post.querySelector('.pimage2').src == 'null' &&
+                post.querySelector('.pimage3').src == 'null' &&
+                post.querySelector('.pimage4').src == 'null'){
                 post.querySelector('.postimages').classList.add('noimg')
             }
             console.log('happened')

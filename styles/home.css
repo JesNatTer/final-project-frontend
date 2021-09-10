@@ -312,6 +312,14 @@ input:focus{
     grid-row: 1;
 }
 
+.minus-button{
+    display: none;
+}
+
+.usersplus-button{
+    display: none;
+}
+
 .profilename-tag{
     grid-column: 2/3;
     grid-row: 1;
