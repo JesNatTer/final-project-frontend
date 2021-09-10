@@ -75,7 +75,7 @@ input:focus{
 }
 
 .later{
-    width: 25vw;
+    width: 100%;
     height: 100%;
     background: black;
 }
@@ -251,7 +251,7 @@ input:focus{
     position: relative;
     overflow-x: hidden;
     font-size: 13px;
-    padding-left: 15px;
+    padding:5px 0 5px 15px;
     border-radius: 30px;
 }
 
@@ -542,10 +542,9 @@ textarea{
     opacity: 0;
     pointer-events: none;
     position: absolute;
-    place-self: center;
+    place-content: center;
     background: rgba(0, 0, 0, 0.5);
     display: grid;
-    place-content: center;
     height: 100vh;
     width: 100vw;
     top: 0;
@@ -669,4 +668,107 @@ textarea:focus{
 
 .followed{
     background:rgb(132, 0, 255);
+}
+
+.usermodal{
+    height: 100vh;
+    width: 100vw;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    place-content: center;
+    background: rgba(0, 0, 0, 0.5);
+    display: grid;
+    transition: 1s ease;
+}
+
+.usermodal.active{
+    opacity: 1;
+    pointer-events: initial;
+}
+
+.modalusercontainer{
+    width: 550px;
+    height: auto;
+    background: black;
+    overflow-y: scroll;
+}
+
+.closeusermodal{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 25px;
+    color: rgb(227, 223, 255);
+}
+
+.modaluser{
+    display: grid;
+    width: 100%;
+    padding: 20px;
+    height: auto;
+    place-items: center;
+    grid-template-columns: 60px 1fr 1fr;
+    grid-template-rows: 50% auto 50%;
+    background: rgb(29, 29, 29);
+    color: rgb(227, 223, 255);
+}
+
+.modaluser-icon{
+    height: 60px;
+    width: 60px;
+    grid-column: 1/2;
+    grid-row: 1/2;
+}
+
+.modaluser-icon img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.modaluser-name-tag{
+    grid-column: 2/3;
+    grid-row: 1/2;
+    margin-right: 50px;
+}
+
+.modaluser-tag{
+    color: rgb(255, 153, 0);
+}
+
+.modaluser-bio{
+    grid-column: 1/4;
+    grid-row: 2/3;
+    width: 100%;
+}
+
+.modaluser button{
+    grid-column: 3/4;
+    grid-row: 1/2;
+    position: relative;
+    width: 100px;
+    color: rgb(227, 223, 255);
+    place-self: end;
+}
+
+.follows{
+    grid-column: 1/4;
+    grid-row: 3/4;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 50% 50%;
+    color: rgb(227, 223, 255);
+    place-self: center;
+    place-items: center;
+    padding: 30px;
+}
+
+.follows div span{
+    padding: 20px;
+    margin-left: 30px;
+    color: rgb(132, 0, 255);
 }

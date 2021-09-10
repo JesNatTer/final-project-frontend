@@ -56,7 +56,9 @@ function profiledetails(){
                     followers <span>${followers.length}</span>
                 </div>
             </div>
-        `
+        `;
+        document.querySelector('.profileimg img').addEventListener('click', gotoprofile)
+
     })
 }
 
@@ -135,7 +137,6 @@ function showposts(){
             });
             document.querySelectorAll('.viewpost').forEach(button => button.addEventListener('click', viewPost))
             document.querySelectorAll('.likepost').forEach(button => button.addEventListener('click', likepost))
-            document.querySelectorAll('.likepost').forEach(button => button.addEventListener('click', likepost))
         }}
     )
         
@@ -144,6 +145,52 @@ function showposts(){
 function postclass(){
     if (document.querySelector('.postsbody .post')){
         document.querySelectorAll('.postsbody .post').forEach( post => {
+            console.log(post)
+            if (post.querySelector('.ptext').innerHTML == 'null'){
+                post.querySelector('.ptext').classList.add('notext')
+                console.log('hmmm')
+            }
+            if (post.querySelector('.pimage4').src != 'http://127.0.0.1:5500/null'){
+                post.querySelector('.postimages').classList.add('imgs4')
+            }
+            if (post.querySelector('.pimage1').src != 'http://127.0.0.1:5500/null' &&
+                post.querySelector('.pimage2').src != 'http://127.0.0.1:5500/null' &&
+                post.querySelector('.pimage3').src != 'http://127.0.0.1:5500/null' &&
+                post.querySelector('.pimage4').src == 'http://127.0.0.1:5500/null'){
+                post.querySelector('.postimages').classList.add('imgs3')
+                post.querySelector('.pimage4').classList.add('noimg')
+                console.log('image 4 missing')
+            }
+            if (post.querySelector('.pimage1').src != 'http://127.0.0.1:5500/null' &&
+                post.querySelector('.pimage2').src != 'http://127.0.0.1:5500/null' &&
+                post.querySelector('.pimage3').src == 'http://127.0.0.1:5500/null' &&
+                post.querySelector('.pimage4').src == 'http://127.0.0.1:5500/null'){
+                post.querySelector('.postimages').classList.add('imgs2')
+                post.querySelector('.pimage4').classList.add('noimg')
+                post.querySelector('.pimage3').classList.add('noimg')
+            }
+            if (post.querySelector('.pimage1').src != 'http://127.0.0.1:5500/null' &&
+                post.querySelector('.pimage2').src == 'http://127.0.0.1:5500/null' &&
+                post.querySelector('.pimage3').src == 'http://127.0.0.1:5500/null' &&
+                post.querySelector('.pimage4').src == 'http://127.0.0.1:5500/null'){
+                post.querySelector('.postimages').classList.add('imgs1')
+                post.querySelector('.pimage4').classList.add('noimg')
+                post.querySelector('.pimage3').classList.add('noimg')
+                post.querySelector('.pimage2').classList.add('noimg')
+            }
+            if (post.querySelector('.pimage1').src == 'http://127.0.0.1:5500/null' &&
+                post.querySelector('.pimage2').src == 'http://127.0.0.1:5500/null' &&
+                post.querySelector('.pimage3').src == 'http://127.0.0.1:5500/null' &&
+                post.querySelector('.pimage4').src == 'http://127.0.0.1:5500/null'){
+                post.querySelector('.postimages').classList.add('noimg')
+            }
+            console.log('happened')
+        })
+    }else{
+        console.log("didn't")
+    }
+    if (document.querySelector('.modalusercontainer .post')){
+        document.querySelectorAll('.modalusercontainer .post').forEach( post => {
             console.log(post)
             if (post.querySelector('.ptext').innerHTML == 'null'){
                 post.querySelector('.ptext').classList.add('notext')
@@ -279,6 +326,7 @@ function showusers(){
     .then(res => res.json())
     .then(data => {
         console.log(data);
+        document.querySelector('.users').innerHTML = ``
         data.data.forEach(user => {
             console.log(`followers => ${user.followers}`)
             let followers
@@ -300,11 +348,10 @@ function showusers(){
             }
             document.querySelector('.users').innerHTML += `
                 <div class='user'>
-                    <img src='${user.profile_image}' alt='profile image'>
+                    <img src='${user.profile_image}' id='${user.userId}' alt='profile image'>
                     <div class='user-data'>
                         <span class='user-username'>${user.username}</span>
                         <span class='user-tag'>${user.tag}</span>
-                        <span class='user-bio'>${user.bio}</span>
                     </div>
                     <div class='followbutton fl${user.userId}' id='${user.userId}'>follow</div>
                 </div>
@@ -312,6 +359,7 @@ function showusers(){
             userfollowed(followers, user.userId)
         });
         document.querySelectorAll('.followbutton').forEach(button => button.addEventListener('click', followuser))
+        document.querySelectorAll('.user img').forEach(button => button.addEventListener('click', openusermodal))
     })
 }
 
@@ -672,4 +720,114 @@ function addcomment(){
             viewcomments()
         })
     }
+}
+
+function openusermodal(e){
+    let userId = e.target.id
+    console.log(userId)
+    document.querySelector('.usermodal').classList.toggle('active')
+    fetch(`https://clonebackend.herokuapp.com/user/${userId}/`)
+    .then(res => res.json())
+    .then(data => {
+        console.log(data)
+        let userdetails = data.data
+        let posts = data.posts
+        let following
+        let followers
+        if (userdetails.following){
+            following = userdetails['following'].substring(1).slice(0, -1).split(',')
+            console.log('followings showing')
+        }
+        if (!userdetails.following){
+            following = ''
+            console.log('worked')
+        }
+        if (userdetails.followers){
+            followers = userdetails['followers'].substring(1).slice(0, -1).split(',')
+            console.log('followers showing')
+        }
+        if (!userdetails.followers){
+            followers = ''
+            console.log('worked')
+        }
+        document.querySelector('.modalusercontainer').innerHTML = `
+            <div class='modaluser'>
+                <div class='modaluser-icon'>
+                    <img src='${userdetails.profile_image}' alt='Profile Image' />
+                </div>
+                <div class='modaluser-name-tag'>
+                    <div class='modaluser-name'>${userdetails.username}</div>
+                    <div class='modaluser-tag'>@${userdetails.tag}</div>
+                </div>
+                ${userdetails.bio ? `<div class='modaluser-bio'>${userdetails.bio}</div>` : ''}
+                <button class='followbutton fl${userdetails.userId}'>Follow</button>
+                <div class='follows'>
+                    <div class='modaluser-followings'>Following <span>${following.length}</span></div>
+                    <div class='modaluser-followers'>Followers <span>${followers.length}</span></div>
+                </div>
+            </div>
+        `;
+        posts.forEach(post => {
+            let likeslist
+                if (post.liked_by){
+                    if (post['liked_by'].split().map(Number)[0]){
+                        likeslist = post['liked_by'].split().map(Number)
+                        console.log('not empty1')
+                    }
+                    else{
+                        likeslist = post['liked_by'].toString().substring(1).slice(0, -1).split(', ')
+                        console.log(likeslist)
+                        console.log('not empty2')
+                    }
+                }
+                if (!post.liked_by){
+                    likeslist = ''
+                    console.log('empty')
+                }
+            document.querySelector('.modalusercontainer').innerHTML += `
+            <div class='post' id='post${post.postId}'>
+                <div class='postleftsection'>
+                    <img src='${userdetails.profile_image}' alt='profile image'>
+                </div>
+                <div class='postrightsection'>
+                    <div class='postuserdetails'>
+                        <div class='postusername'>
+                            ${userdetails.username}
+                        </div> 
+                        <div class='posttag'>
+                            @${userdetails.tag}
+                        </div>
+                    </div>
+                    <div class='textandimage'>
+                        <p class='ptext'>${post.text}</p>
+                        <div class='postimages'>
+                            <img src='${post.image1}' class='pimage1' alt='image1'/>
+                            <img src='${post.image2}' class='pimage2' alt='image1'/>
+                            <img src='${post.image3}' class='pimage3' alt='image1'/>
+                            <img src='${post.image4}' class='pimage4' alt='image1'/>
+                        </div>
+                        <div class='timecreated'>${post.datetime}</div>
+                    </div>
+                </div>
+                <div class='bottomsection'>
+                    <div class='likepost lp${post.postId}' id='${post.postId}'>Like <span class='postlikes'>${likeslist.length}</span></div>
+                    <div class='retweetpost rt${post.postId}' id='${post.postId}'>Retweet</div>
+                    <div class='viewpost' id='${post.postId}'>View post</div>
+                </div> 
+            </div>
+            `;
+            postclass()
+        })
+    })
+    // document.querySelector('.usermodalcontainer').innerHTML = document.querySelector(`#post${postid}`).innerHTML
+
+}
+
+function closeusermodal(){
+    document.querySelector('.usermodal').classList.remove('active')
+}
+
+
+function gotoprofile(){
+    window.location.href = './myprofile.html'
 }

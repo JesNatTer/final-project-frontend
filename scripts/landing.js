@@ -14,11 +14,11 @@ function login(){
     .then(res => res.json())
     .then(data => {
         console.log(data);
-        alert('Login successful!')
         // if data return is null if statement later
         if(data.data == null){
             alert('user doesnt exist')
         }else{
+            alert('Login successful!')
             mystorage.setItem('userdetails', JSON.stringify(data.data))
             window.location.href = './home.html'
         }

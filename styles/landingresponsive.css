@@ -1,0 +1,41 @@
+@media only screen and (max-width:1050px){
+    body{
+        overflow: visible;
+        grid-template-columns: 100vw;
+        grid-template-rows: auto 100vh;    
+    }
+
+    .leftblock{
+        width: 100%;
+    }
+
+    .headingtext {
+        font-size: 30px;
+    }
+
+    .registercontainer{
+        margin-top: 50px;
+        height: 60vh;
+    }
+
+    .whiteover{
+        clip-path: initial;
+    }
+
+    .text{
+        width: 100%;
+    }
+
+
+}
+
+@media only screen and (max-width:500px){
+    body{
+        grid-template-columns: 100vw;
+        grid-template-rows: 100vh 100vh;
+    }
+    
+    .leftblock{
+        height: auto;
+    }
+}

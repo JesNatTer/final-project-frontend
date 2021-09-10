@@ -1,0 +1,26 @@
+@media only screen and (max-width:1250px){
+    .body{
+        grid-template-columns: 30vw 40vw 30vw;
+    }
+    .likepost, .viewpost, .retweetpost{
+        font-size: 13px;
+        margin-left: 20px;
+        margin-right: 0;
+    }
+
+    .likepost{
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width:1250px){
+    .body{
+        grid-template-columns: 10vw 80vw 10vw;
+    }
+
+    .posts{
+        width: 70vw;
+    }
+
+}
+

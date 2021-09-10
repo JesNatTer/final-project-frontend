@@ -1,0 +1,437 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+}
+
+body{
+    height: 100vh;
+    width: 100vw;
+}
+
+.content-container{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: 10vh 1fr;
+    overflow: hidden;
+}
+
+.header{
+    background: rgb(29, 29, 29);
+    color: rgb(227, 223, 255);
+    display: flex;
+    align-items: center;
+}
+
+.header-heading{
+    font-size: 30px;
+    font-weight: 700;
+    padding-left: 50px;
+}
+
+.body{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.profile-container, .posts-container{
+    width: 100%;
+    background: rgb(29, 29, 29);
+    height: 100%;
+    color: rgb(227, 223, 255);
+}
+
+.profile-heading, .posts-heading{
+    font-size: 27px;
+    font-weight: 600;
+    text-align: center;
+    width: 100%;
+    background: rgb(132, 0, 255);
+    height: 50px;
+    display: grid;
+    place-items: center;
+}
+
+.profile-heading{
+    border-right: 1px solid rgb(29, 29, 29);
+}
+.posts-heading{
+    border-left: 1px solid rgb(29, 29, 29);
+}
+
+.profile-details{
+    border-right: 1px solid rgb(132, 0, 255);
+    height:83vh;
+}
+
+.profileuser{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.user-icon{
+    height: 200px;
+    width: 200px;
+    margin: 20px 0;
+}
+
+.user-icon img{
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profileuser-name-tag{
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profileuser-tag{
+    color: rgb(255, 153, 0);
+}
+
+.follows{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    place-items: center;
+}
+
+.follows div{
+    background: rgb(29, 29, 29);
+    width: 100%;
+    text-align: center;
+    place-self: center;
+    padding: 20px;
+}
+
+.follows div span{
+    padding: 20px;
+    margin-left: 30px;
+    background: rgb(132, 0, 255);
+}
+
+.editdeletebuttons{
+    margin-top: 50px;
+    padding: 20px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-column-gap: 10px;
+    place-items: center;
+}
+
+.editbutton, .deletebutton{
+    padding: 20px 0;
+    width: 90%;
+    text-align: center;
+    border: 1px solid rgb(132, 0, 255);
+    transition: 0.5s ease;
+}
+
+
+.postsbody{
+    height: 83vh;
+    width: 100%;
+    overflow-y: scroll;
+    border-left: 2px solid rgb(132, 0, 255);
+}
+
+.post{
+    border-top: 1px solid rgb(132, 0, 255);
+    border-bottom: 1px solid rgb(132, 0, 255);
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    color: rgb(227, 223, 255);
+    padding: 10px;
+}
+
+.postleftsection img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 2px solid rgb(132, 0, 255);
+    object-fit: cover;
+}
+
+.postrightsection{
+    display: grid;
+    grid-template-rows: 60px 1fr;
+}
+
+.posttag{
+    color: rgb(255, 153, 0);
+}
+
+.postimages{
+    width: 90%;
+    padding-top: 20px;
+    border-radius: 15px;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 50% 50%;
+}
+
+.postimages img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.noimg{
+    display: none;
+}
+
+.notext{
+    display: none;
+}
+
+.imgs4 .pimage1{
+    border-top-left-radius: 15px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+
+.imgs4 .pimage2{
+    border-top-right-radius: 15px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+.imgs4 .pimage3{
+    border-bottom-left-radius: 15px;
+    padding-right: 5px;
+    padding-top: 5px;
+}
+
+.imgs4 .pimage4{
+    border-bottom-right-radius: 15px;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+.imgs3 .pimage1{
+    grid-column: 1/2;
+    grid-row: 1/3;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding-right: 5px;
+}
+
+.imgs3 .pimage2{
+    grid-column: 2/3;
+    grid-row: 1/2;
+    border-top-right-radius: 15px;
+    padding-left: 5px;
+    padding-bottom: 5px;
+}
+
+.imgs3 .pimage3{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    border-bottom-right-radius: 15px;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+.imgs2 .pimage1{
+    grid-column: 1/2;
+    grid-row: 1/3;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    padding-right: 5px;
+}
+
+.imgs2 .pimage2{
+    grid-column: 2/3;
+    grid-row: 1/3;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    padding-left: 5px;
+}
+
+.imgs1 .pimage1{
+    grid-column: 1/3;
+    grid-row: 1/3;
+    border-radius: 15px;
+}
+
+.timecreated{
+    margin-top: 20px;
+}
+
+.bottomsection{
+    width: 90%;
+    height: 50px;
+    grid-column: 2/3;
+    border-top: 1px solid rgb(132, 0, 255);
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+}
+
+.viewpost{
+    color: rgb(227, 223, 255);
+    padding: 6px 5px;
+    place-items: center;
+    border: 1px solid rgb(132, 0, 255);
+    border-radius: 5px;
+    background: rgb(41, 41, 41);
+    margin-right: 20px;
+    transition: 0.5s ease;
+}
+
+.likepost{
+    color: rgb(227, 223, 255);
+    padding: 6px 10px;
+    place-items: center;
+    border: 1px solid rgb(132, 0, 255);
+    border-radius: 5px;
+    background: rgb(41, 41, 41);
+    margin-right: 20px;
+    transition: 0.5s ease;
+}
+
+.retweetpost{
+    color: rgb(227, 223, 255);
+    padding: 6px 5px;
+    place-items: center;
+    border: 1px solid rgb(132, 0, 255);
+    border-radius: 5px;
+    background: rgb(41, 41, 41);
+    margin-right: 20px;
+    transition: 0.5s ease;
+}
+
+.viewpost:hover, .likepost:hover, .retweetpost:hover{
+    background: rgb(132, 0, 255);
+}
+
+.editbutton:hover, .deletebutton:hover{
+    background: rgb(132, 0, 255);
+}
+
+.editmodal, .deletemodal{
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: 1s ease;
+}
+
+.deletemodal.active{
+    opacity: 1;
+    pointer-events: initial;
+}
+
+.editmodal.active{
+    opacity: 1;
+    pointer-events: initial;
+}
+
+.closemodal{
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 25px;
+    color: rgb(227, 223, 255);
+}
+
+.modaleditcontainer{
+    background: rgb(41, 41, 41);
+    height: auto;
+    color: rgb(227, 223, 255);
+    display: grid;
+    place-items: center;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.modaleditcontainer h3{
+    margin-bottom: 20px;
+}
+
+.edituserblock{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.edituserblock div{
+    width: 100%;
+    display: grid;
+    justify-content: start;
+    margin: 10px 0;
+    grid-template-columns: 30% 50%;
+}
+
+.edituserblock div input{
+    margin-left: 20px;
+    width: 100%;
+    border: 1px solid rgb(132, 0, 255);
+}
+
+.edituserblock div img{
+    display: none;
+}
+
+.editusersubmit{
+    background: rgb(29, 29, 29);
+    border: 1px solid rgb(132, 0, 255);
+    color: rgb(227, 223, 255);
+    padding: 10px 20px;
+    transition: 0.5s ease;
+}
+
+.editusersubmit:hover{
+    background: rgb(132, 0, 255);
+}
+
+.modaldeletecontainer{
+    background: rgb(41, 41, 41);
+    color: rgb(227, 223, 255);
+    padding: 20px;
+}
+
+.modaldeletecontainer h3{
+    font-size: 25px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.deleteconfirm{
+    display: flex;
+    justify-content: space-between;
+}
+
+.deleteconfirm div{
+    padding: 10px 30px;
+    background: rgb(29, 29, 29);
+    border: 1px solid rgb(132, 0, 255);
+    margin: 0 10px;
+    transition: 0.5s ease;
+}
+
+.deleteconfirm div:hover{
+    background: rgb(132, 0, 255);
+}

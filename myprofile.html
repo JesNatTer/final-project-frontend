@@ -5,7 +5,74 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="./styles/myprofile.css">
 </head>
 <body>
+    <main class="content-container">
+        <div class="header">
+            <div class="header-heading">Comms</div>
+        </div>
+        <div class="body">
+            <div class="profile-container">
+                <div class="profile-heading">My Profile</div>
+                <div class="profile-details"></div>
+
+            </div>
+            <div class="posts-container">
+                <div class="posts-heading">My Posts</div>
+                <div class="postsbody">
+
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="editmodal">
+        <i class="fas fa-times closemodal closeedit" onclick="showeditmodal()"></i>
+        <div class="modaleditcontainer">
+            <h3>Edit my profile</h3>
+            <div class="edituserblock">
+                <div>
+                    <label>Username</label>
+                    <input type="text" id="eusername">
+                </div>
+                <div>
+                    <label>Tag</label>
+                    <input type="text" id="etag">
+                </div>
+                <div>
+                    <label>Bio</label>
+                    <input type="text" id="ebio">
+                </div>
+                <div>
+                    <label>Full Name</label>
+                    <input type="text" id="efullname">
+                </div>
+                <div>
+                    <input type="file" id="eproimage">
+                    <img src="" alt="" class="convertedimage">
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input type="text" id="epassword">
+                </div>
+                <div>
+                    <button class="editusersubmit" onclick="edituser()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="deletemodal">
+        <i class="fas fa-times closemodal closedelete" onclick="showdeletemodal()"></i>
+        <div class="modaldeletecontainer">
+            <h3>Are you sure</h3>
+            <div class="deleteconfirm">
+                <div class="deleteyes" onclick='deleteuser()'>Yes</div>
+                <div class="deleteno" onclick='showdeletemodal()'>No</div>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script src="./scripts/myprofile.js"></script>
+    <script src="https://kit.fontawesome.com/1e2396cf96.js" crossorigin="anonymous"></script>
 </body>
 </html>
