@@ -12,11 +12,11 @@
     <div class="main">
         <div class="header">
             <div class="commsicon">Comms</div>
-            <div class="searchbar">
-                <input type="text" id="searchbar" placeholder="search">
-            </div>
         </div>
         <div class="body">
+            <div class="profileblockbutton">
+                <i class="far fa-plus-square plusbutton" onclick="profileblock()"></i>
+            </div>
             <div class="profile-post-block">
                 <div class="profile-details"></div>
                 <div class="add-post">
@@ -61,7 +61,11 @@
                     <div class="postsbody"></div>
                 </div>
             </div>
+            <div class="usersblockbutton">
+                <i class="far fa-plus-square usersplusbutton" onclick="usersblock()"></i>
+            </div>
             <div class="later userscontainer">
+                <i class="far fa-minus-square usersminus-button" onclick="usersblock()"></i>
                 <div class="users"></div>
             </div>
         </div>

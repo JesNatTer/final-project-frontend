@@ -48,6 +48,7 @@ function profiledetails(){
                 <div class='profileusername'>${profile.username}</div>
                 <div class='profiletag'>${profile.tag}</div>
             </div>
+            <i class="far fa-minus-square minus-button"></i>
             <div class='followings'>
                 <div>
                     following <span>${following.length}</span>
@@ -58,6 +59,7 @@ function profiledetails(){
             </div>
         `;
         document.querySelector('.profileimg img').addEventListener('click', gotoprofile)
+        document.querySelector('.minus-button').addEventListener('click', profileblock)
 
     })
 }
@@ -126,7 +128,6 @@ function showposts(){
                     </div>
                     <div class='bottomsection'>
                         <div class='likepost lp${post.postId}' id='${post.postId}'>Like <span class='postlikes'>${likeslist.length}</span></div>
-                        <div class='retweetpost rt${post.postId}' id='${post.postId}'>Retweet</div>
                         <div class='viewpost' id='${post.postId}'>View post</div>
                     </div> 
                 </div>
@@ -760,7 +761,6 @@ function openusermodal(e){
                     <div class='modaluser-tag'>@${userdetails.tag}</div>
                 </div>
                 ${userdetails.bio ? `<div class='modaluser-bio'>${userdetails.bio}</div>` : ''}
-                <button class='followbutton fl${userdetails.userId}'>Follow</button>
                 <div class='follows'>
                     <div class='modaluser-followings'>Following <span>${following.length}</span></div>
                     <div class='modaluser-followers'>Followers <span>${followers.length}</span></div>
@@ -811,7 +811,6 @@ function openusermodal(e){
                 </div>
                 <div class='bottomsection'>
                     <div class='likepost lp${post.postId}' id='${post.postId}'>Like <span class='postlikes'>${likeslist.length}</span></div>
-                    <div class='retweetpost rt${post.postId}' id='${post.postId}'>Retweet</div>
                     <div class='viewpost' id='${post.postId}'>View post</div>
                 </div> 
             </div>
@@ -830,4 +829,12 @@ function closeusermodal(){
 
 function gotoprofile(){
     window.location.href = './myprofile.html'
+}
+
+function profileblock(){
+    document.querySelector('.profile-post-block').classList.toggle('active')
+}
+
+function usersblock(){
+    document.querySelector('.userscontainer').classList.toggle('active')
 }

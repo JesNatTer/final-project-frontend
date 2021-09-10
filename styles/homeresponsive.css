@@ -1,7 +1,72 @@
 @media only screen and (max-width:1250px){
     .body{
-        grid-template-columns: 30vw 40vw 30vw;
+        grid-template-columns: 10vw 50vw 40vw;
     }
+
+    .profileblockbutton{
+        grid-column: 1/2;
+        width: 10vw;
+        display: grid;
+    }
+
+    .plusbutton{
+        font-size: 35px;
+        color: rgb(227, 223, 255);
+        place-self: center;
+        align-self: start;
+        margin-top: 10px;
+        transition: 0.5s ease;
+    }
+
+    .plusbutton:hover{
+        color: rgb(132, 0, 255);
+    }
+
+    .profile-post-block{
+        display: block;
+        position: absolute;
+        left: -100%;
+    }
+    
+    .profile-post-block{
+        background: rgb(29, 29, 29);
+        height: 89.9vh;
+        width: 50%;
+        display: block;
+        position: absolute;
+        left: -100%;
+        z-index: 10;
+        transition: 1s ease;
+    }
+
+    .profile-details{
+        grid-template-columns: 25% 55% 20%;
+    }
+
+    .profile-post-block.active{
+        left: 0;
+    }
+
+    .posts{
+        grid-column: 2/3;
+        width: 50vw;
+    }
+
+    .minus-button{
+        place-self: center;
+        font-size: 30px;
+        transition: 0.5s ease;
+    }
+
+    .minus-button:hover{
+        color: rgb(132, 0, 255);
+    }
+
+    .userscontainer{
+        place-self: end;
+        width: 35vw;
+    }
+
     .likepost, .viewpost, .retweetpost{
         font-size: 13px;
         margin-left: 20px;
@@ -13,14 +78,114 @@
     }
 }
 
-@media only screen and (max-width:1250px){
+@media only screen and (max-width:800px){
     .body{
         grid-template-columns: 10vw 80vw 10vw;
+        position: relative;
+        overflow-y: clip;
+    }
+
+    .body .profileblockbutton, .body .posts, .body .usersblockbutton{
+        height: 90vh;
     }
 
     .posts{
-        width: 70vw;
+        width: 80vw;
     }
 
+    .postsbody{
+        overflow-y: scroll;
+        height: 83vh;
+    }
+
+    .userscontainer{
+        display: grid;
+        position: absolute;
+        top: 0;
+        height: 89.7vh;
+        width: 50vw;
+        border-bottom: 1px solid rgb(132, 0, 255);
+        right: -100%;
+        overflow-y: scroll;
+        transition: 1s ease;
+    }
+
+    .userscontainer.active{
+        right: 0;
+    }
+
+    .usersblockbutton{
+        grid-column: 3/4;
+        display: grid;
+        place-items: center;
+    }
+
+    .usersplusbutton{
+        display: block;
+        color: rgb(227, 223, 255);
+        font-size: 30px;
+        align-self: start;
+        margin-top: 10px;
+        transition: 0.5s ease;
+    }
+
+    .usersplusbutton:hover{
+        color: rgb(132, 0, 255);
+    }
+
+    .usersminus-button{
+        place-self: center;
+        color: rgb(227, 223, 255);
+        margin-top: 10px;
+        font-size: 30px;
+        transition: 0.5s ease;
+    }
+
+    .usersminus-button:hover{
+        color: rgb(132, 0, 255);
+    }
+
+    .modalpostcontainer{
+        width: 90vw;
+    }
+
+    .post{
+        grid-template-columns: 60px 1fr;
+    }
+
+    .postleftsection img{
+        height: 50px;
+        width: 50px;
+    }
 }
 
+@media only screen and (max-width:550px){
+    .bottomsection{
+        font-size: 10px;
+    }
+
+    .plusbutton, .usersplusbutton, .minus-button, .usersminus-button{
+        font-size: 25px;
+    }
+
+    .profile-post-block, .userscontainer{
+        width: 80vw;
+    }
+
+    .modalusercontainer{
+        width: 95vw;
+    }
+
+    .modaluser{
+        grid-template-columns: 100px 1fr 1fr;
+    }
+
+    .follows{
+        padding: 15px;
+    }
+
+    .follows div span{
+        padding: 10px;
+        margin-left: 1px;
+    }
+}

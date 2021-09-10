@@ -1,0 +1,36 @@
+@media only screen and (max-width:800px){
+    .content-container{
+        overflow: initial;
+    }
+
+    .body{
+        grid-template-columns: 100%;
+        grid-template-rows: 100vh auto;
+    }
+
+    .editmodal{
+        position: fixed;
+    }
+
+    .deletemodal{
+        position: fixed;
+    }
+
+    .modaleditcontainer{
+        border-radius: 0;
+    }
+
+    .follows div{
+        padding: 0;
+    }
+
+    .follows div span{
+        padding: 15px;
+        margin-left: 15px;
+    }
+
+    .postsbody{
+        border-bottom: 3px solid rgb(132 0 255);
+        border-left: none;
+    }
+}
