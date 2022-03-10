@@ -63,48 +63,48 @@ async function profiledetails(){
 
     // .then(res => res.json())
     // .then(data => {
-    //     console.log(data)
-    //     let following
-    //     let followers
-    //     let profile = data.data
-    //     mystorage.setItem('logged-in-user', JSON.stringify(profile))
-    //     if (profile.following){
-    //         following = profile['following'].substring(1).slice(0, -1).split(',')
-    //         console.log(following)
-    //         console.log('followings showing')
-    //     }
-    //     if (!profile.following){
-    //         following = ''
-    //         console.log('worked')
-    //     }
-    //     if (profile.followers){
-    //         followers = profile['followers'].substring(1).slice(0, -1).split(',')
-    //         console.log('followers showing')
-    //     }
-    //     if (!profile.followers){
-    //         followers = ''
-    //         console.log('worked')
-    //     }
-    //     document.querySelector('.profile-details').innerHTML = `
-    //         <div class='profileimg'>
-    //             <img src='${profile.profile_image}' alt='profile img'/>
-    //         </div>
-    //         <div class='profilename-tag'>
-    //             <div class='profileusername'>${profile.username}</div>
-    //             <div class='profiletag'>${profile.tag}</div>
-    //         </div>
-    //         <i class="far fa-minus-square minus-button"></i>
-    //         <div class='followings'>
-    //             <div>
-    //                 following <span>${following.length}</span>
-    //             </div>
-    //             <div>
-    //                 followers <span>${followers.length}</span>
-    //             </div>
-    //         </div>
-    //     `;
-    //     document.querySelector('.profileimg img').addEventListener('click', gotoprofile)
-    //     document.querySelector('.minus-button').addEventListener('click', profileblock)
+        // console.log(data)
+        // let following
+        // let followers
+        // let profile = data.data
+        // mystorage.setItem('logged-in-user', JSON.stringify(profile))
+        // if (profile.following){
+        //     following = profile['following'].substring(1).slice(0, -1).split(',')
+        //     console.log(following)
+        //     console.log('followings showing')
+        // }
+        // if (!profile.following){
+        //     following = ''
+        //     console.log('worked')
+        // }
+        // if (profile.followers){
+        //     followers = profile['followers'].substring(1).slice(0, -1).split(',')
+        //     console.log('followers showing')
+        // }
+        // if (!profile.followers){
+        //     followers = ''
+        //     console.log('worked')
+        // }
+        // document.querySelector('.profile-details').innerHTML = `
+        //     <div class='profileimg'>
+        //         <img src='${profile.profile_image}' alt='profile img'/>
+        //     </div>
+        //     <div class='profilename-tag'>
+        //         <div class='profileusername'>${profile.username}</div>
+        //         <div class='profiletag'>${profile.tag}</div>
+        //     </div>
+        //     <i class="far fa-minus-square minus-button"></i>
+        //     <div class='followings'>
+        //         <div>
+        //             following <span>${following.length}</span>
+        //         </div>
+        //         <div>
+        //             followers <span>${followers.length}</span>
+        //         </div>
+        //     </div>
+        // `;
+        // document.querySelector('.profileimg img').addEventListener('click', gotoprofile)
+        // document.querySelector('.minus-button').addEventListener('click', profileblock)
 
     // })
 }
@@ -123,48 +123,68 @@ async function showposts(){
 
     const data = await response.json()
 
-    console.log(data)
-        let following
-        let followers
-        let profile = data.data
-        mystorage.setItem('logged-in-user', JSON.stringify(profile))
-        if (profile.following){
-            following = profile['following'].substring(1).slice(0, -1).split(',')
-            console.log(following)
-            console.log('followings showing')
-        }
-        if (!profile.following){
-            following = ''
-            console.log('worked')
-        }
-        if (profile.followers){
-            followers = profile['followers'].substring(1).slice(0, -1).split(',')
-            console.log('followers showing')
-        }
-        if (!profile.followers){
-            followers = ''
-            console.log('worked')
-        }
-        document.querySelector('.profile-details').innerHTML = `
-            <div class='profileimg'>
-                <img src='${profile.profile_image}' alt='profile img'/>
-            </div>
-            <div class='profilename-tag'>
-                <div class='profileusername'>${profile.username}</div>
-                <div class='profiletag'>${profile.tag}</div>
-            </div>
-            <i class="far fa-minus-square minus-button"></i>
-            <div class='followings'>
-                <div>
-                    following <span>${following.length}</span>
+    console.log(data);
+    console.log(data.data.length == 0)
+    if (data.data == 0){
+        document.querySelector('.postsbody').innerHTML = '<span class="noposts">Nothing here yet...</span>'
+    }
+    else{
+        document.querySelector('.postsbody').innerHTML = ''
+        data.data.forEach(post => {
+            let likeslist
+            if (post.liked_by){
+                if (post['liked_by'].split().map(Number)[0]){
+                    likeslist = post['liked_by'].split().map(Number)
+                    console.log('not empty1')
+                }
+                else{
+                    likeslist = post['liked_by'].toString().substring(1).slice(0, -1).split(', ')
+                    console.log(likeslist)
+                    console.log('not empty2')
+                }
+            }
+            if (!post.liked_by){
+                likeslist = ''
+                console.log('empty')
+            }
+            document.querySelector('.postsbody').innerHTML += `
+            <div class='post' id='post${post.postId}'>
+                <div class='postleftsection'>
+                    <img src='${post.profile_image}' alt='profile image'>
                 </div>
-                <div>
-                    followers <span>${followers.length}</span>
+                <div class='postrightsection'>
+                    <div class='postuserdetails'>
+                        <div class='postusername'>
+                            ${post.username}
+                        </div> 
+                        <div class='posttag'>
+                            @${post.tag}
+                        </div>
+                    </div>
+                    <div class='textandimage'>
+                        <p class='ptext'>${post.text}</p>
+                        <div class='postimages'>
+                            <img src='${post.image1}' class='pimage1' alt='image1'/>
+                            <img src='${post.image2}' class='pimage2' alt='image1'/>
+                            <img src='${post.image3}' class='pimage3' alt='image1'/>
+                            <img src='${post.image4}' class='pimage4' alt='image1'/>
+                        </div>
+                        <div class='timecreated'>${post.datetime}</div>
+                    </div>
                 </div>
+                <div class='bottomsection'>
+                    <div class='likepost lp${post.postId}' id='${post.postId}'>Like <span class='postlikes'>${likeslist.length}</span></div>
+                    <div class='viewpost' id='${post.postId}'>View post</div>
+                </div> 
             </div>
-        `;
-        document.querySelector('.profileimg img').addEventListener('click', gotoprofile)
-        document.querySelector('.minus-button').addEventListener('click', profileblock)
+            `;
+            console.log(likeslist)
+            postclass()
+            postliked(likeslist, post.postId)
+        });
+        document.querySelectorAll('.viewpost').forEach(button => button.addEventListener('click', viewPost))
+        document.querySelectorAll('.likepost').forEach(button => button.addEventListener('click', likepost))
+    }
 
     // .then(res => res.json())
     // .then(data => {
