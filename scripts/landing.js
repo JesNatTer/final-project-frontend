@@ -37,8 +37,8 @@ async function login(){
     // })
 }
 
-function register(){
-    fetch(`https://clonebackend.herokuapp.com/user/`, {
+async function register(){
+    const response = await fetch(`https://clonebackend.herokuapp.com/user/`, {
         method:'POST',
         body: JSON.stringify({
             "email": document.querySelector('#remail').value,
@@ -51,9 +51,14 @@ function register(){
             'Content-type': 'application/json',
         }
     })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
-        alert('Register successful!')
-    })
+
+    const data = await response.json()
+    console.log(data);
+    alert('Register successful!')
+
+    // .then(res => res.json())
+    // .then(data => {
+    //     console.log(data);
+    //     alert('Register successful!')
+    // })
 }

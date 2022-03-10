@@ -14,11 +14,11 @@ function postdata(){
     return postobject
 }
 
-function profiledetails(){
-    fetch(`https://clonebackend.herokuapp.com/user/${userlogin.userId}/`)
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
+async function profiledetails(){
+    const response = await fetch(`https://clonebackend.herokuapp.com/user/${userlogin.userId}/`)
+    const data = await response.json()
+    
+    console.log(data)
         let following
         let followers
         let profile = data.data
@@ -61,7 +61,52 @@ function profiledetails(){
         document.querySelector('.profileimg img').addEventListener('click', gotoprofile)
         document.querySelector('.minus-button').addEventListener('click', profileblock)
 
-    })
+    // .then(res => res.json())
+    // .then(data => {
+    //     console.log(data)
+    //     let following
+    //     let followers
+    //     let profile = data.data
+    //     mystorage.setItem('logged-in-user', JSON.stringify(profile))
+    //     if (profile.following){
+    //         following = profile['following'].substring(1).slice(0, -1).split(',')
+    //         console.log(following)
+    //         console.log('followings showing')
+    //     }
+    //     if (!profile.following){
+    //         following = ''
+    //         console.log('worked')
+    //     }
+    //     if (profile.followers){
+    //         followers = profile['followers'].substring(1).slice(0, -1).split(',')
+    //         console.log('followers showing')
+    //     }
+    //     if (!profile.followers){
+    //         followers = ''
+    //         console.log('worked')
+    //     }
+    //     document.querySelector('.profile-details').innerHTML = `
+    //         <div class='profileimg'>
+    //             <img src='${profile.profile_image}' alt='profile img'/>
+    //         </div>
+    //         <div class='profilename-tag'>
+    //             <div class='profileusername'>${profile.username}</div>
+    //             <div class='profiletag'>${profile.tag}</div>
+    //         </div>
+    //         <i class="far fa-minus-square minus-button"></i>
+    //         <div class='followings'>
+    //             <div>
+    //                 following <span>${following.length}</span>
+    //             </div>
+    //             <div>
+    //                 followers <span>${followers.length}</span>
+    //             </div>
+    //         </div>
+    //     `;
+    //     document.querySelector('.profileimg img').addEventListener('click', gotoprofile)
+    //     document.querySelector('.minus-button').addEventListener('click', profileblock)
+
+    // })
 }
 
 let user = JSON.parse(mystorage.getItem('logged-in-user'))
@@ -71,75 +116,121 @@ profiledetails()
 console.log(userlogin.following)
 
 
-function showposts(){
+async function showposts(){
     userid = userlogin.userId
-    fetch(`https://clonebackend.herokuapp.com/post/${userid}/`, {
+    const response = await fetch(`https://clonebackend.herokuapp.com/post/${userid}/`, {
     })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
-        console.log(data.data.length == 0)
-        if (data.data == 0){
-            document.querySelector('.postsbody').innerHTML = '<span class="noposts">Nothing here yet...</span>'
+
+    const data = await response.json()
+
+    console.log(data)
+        let following
+        let followers
+        let profile = data.data
+        mystorage.setItem('logged-in-user', JSON.stringify(profile))
+        if (profile.following){
+            following = profile['following'].substring(1).slice(0, -1).split(',')
+            console.log(following)
+            console.log('followings showing')
         }
-        else{
-            document.querySelector('.postsbody').innerHTML = ''
-            data.data.forEach(post => {
-                let likeslist
-                if (post.liked_by){
-                    if (post['liked_by'].split().map(Number)[0]){
-                        likeslist = post['liked_by'].split().map(Number)
-                        console.log('not empty1')
-                    }
-                    else{
-                        likeslist = post['liked_by'].toString().substring(1).slice(0, -1).split(', ')
-                        console.log(likeslist)
-                        console.log('not empty2')
-                    }
-                }
-                if (!post.liked_by){
-                    likeslist = ''
-                    console.log('empty')
-                }
-                document.querySelector('.postsbody').innerHTML += `
-                <div class='post' id='post${post.postId}'>
-                    <div class='postleftsection'>
-                        <img src='${post.profile_image}' alt='profile image'>
-                    </div>
-                    <div class='postrightsection'>
-                        <div class='postuserdetails'>
-                            <div class='postusername'>
-                                ${post.username}
-                            </div> 
-                            <div class='posttag'>
-                                @${post.tag}
-                            </div>
-                        </div>
-                        <div class='textandimage'>
-                            <p class='ptext'>${post.text}</p>
-                            <div class='postimages'>
-                                <img src='${post.image1}' class='pimage1' alt='image1'/>
-                                <img src='${post.image2}' class='pimage2' alt='image1'/>
-                                <img src='${post.image3}' class='pimage3' alt='image1'/>
-                                <img src='${post.image4}' class='pimage4' alt='image1'/>
-                            </div>
-                            <div class='timecreated'>${post.datetime}</div>
-                        </div>
-                    </div>
-                    <div class='bottomsection'>
-                        <div class='likepost lp${post.postId}' id='${post.postId}'>Like <span class='postlikes'>${likeslist.length}</span></div>
-                        <div class='viewpost' id='${post.postId}'>View post</div>
-                    </div> 
+        if (!profile.following){
+            following = ''
+            console.log('worked')
+        }
+        if (profile.followers){
+            followers = profile['followers'].substring(1).slice(0, -1).split(',')
+            console.log('followers showing')
+        }
+        if (!profile.followers){
+            followers = ''
+            console.log('worked')
+        }
+        document.querySelector('.profile-details').innerHTML = `
+            <div class='profileimg'>
+                <img src='${profile.profile_image}' alt='profile img'/>
+            </div>
+            <div class='profilename-tag'>
+                <div class='profileusername'>${profile.username}</div>
+                <div class='profiletag'>${profile.tag}</div>
+            </div>
+            <i class="far fa-minus-square minus-button"></i>
+            <div class='followings'>
+                <div>
+                    following <span>${following.length}</span>
                 </div>
-                `;
-                console.log(likeslist)
-                postclass()
-                postliked(likeslist, post.postId)
-            });
-            document.querySelectorAll('.viewpost').forEach(button => button.addEventListener('click', viewPost))
-            document.querySelectorAll('.likepost').forEach(button => button.addEventListener('click', likepost))
-        }}
-    )
+                <div>
+                    followers <span>${followers.length}</span>
+                </div>
+            </div>
+        `;
+        document.querySelector('.profileimg img').addEventListener('click', gotoprofile)
+        document.querySelector('.minus-button').addEventListener('click', profileblock)
+
+    // .then(res => res.json())
+    // .then(data => {
+    //     console.log(data);
+    //     console.log(data.data.length == 0)
+    //     if (data.data == 0){
+    //         document.querySelector('.postsbody').innerHTML = '<span class="noposts">Nothing here yet...</span>'
+    //     }
+    //     else{
+    //         document.querySelector('.postsbody').innerHTML = ''
+    //         data.data.forEach(post => {
+    //             let likeslist
+    //             if (post.liked_by){
+    //                 if (post['liked_by'].split().map(Number)[0]){
+    //                     likeslist = post['liked_by'].split().map(Number)
+    //                     console.log('not empty1')
+    //                 }
+    //                 else{
+    //                     likeslist = post['liked_by'].toString().substring(1).slice(0, -1).split(', ')
+    //                     console.log(likeslist)
+    //                     console.log('not empty2')
+    //                 }
+    //             }
+    //             if (!post.liked_by){
+    //                 likeslist = ''
+    //                 console.log('empty')
+    //             }
+    //             document.querySelector('.postsbody').innerHTML += `
+    //             <div class='post' id='post${post.postId}'>
+    //                 <div class='postleftsection'>
+    //                     <img src='${post.profile_image}' alt='profile image'>
+    //                 </div>
+    //                 <div class='postrightsection'>
+    //                     <div class='postuserdetails'>
+    //                         <div class='postusername'>
+    //                             ${post.username}
+    //                         </div> 
+    //                         <div class='posttag'>
+    //                             @${post.tag}
+    //                         </div>
+    //                     </div>
+    //                     <div class='textandimage'>
+    //                         <p class='ptext'>${post.text}</p>
+    //                         <div class='postimages'>
+    //                             <img src='${post.image1}' class='pimage1' alt='image1'/>
+    //                             <img src='${post.image2}' class='pimage2' alt='image1'/>
+    //                             <img src='${post.image3}' class='pimage3' alt='image1'/>
+    //                             <img src='${post.image4}' class='pimage4' alt='image1'/>
+    //                         </div>
+    //                         <div class='timecreated'>${post.datetime}</div>
+    //                     </div>
+    //                 </div>
+    //                 <div class='bottomsection'>
+    //                     <div class='likepost lp${post.postId}' id='${post.postId}'>Like <span class='postlikes'>${likeslist.length}</span></div>
+    //                     <div class='viewpost' id='${post.postId}'>View post</div>
+    //                 </div> 
+    //             </div>
+    //             `;
+    //             console.log(likeslist)
+    //             postclass()
+    //             postliked(likeslist, post.postId)
+    //         });
+    //         document.querySelectorAll('.viewpost').forEach(button => button.addEventListener('click', viewPost))
+    //         document.querySelectorAll('.likepost').forEach(button => button.addEventListener('click', likepost))
+    //     }}
+    // )
         
 }
 
@@ -239,11 +330,11 @@ function postclass(){
     }
 }
 
-function likepost(e){
+async function likepost(e){
     let userid = user.userId
     let postid = e.target.id
     if (e.target.classList[2]){
-        fetch(`https://clonebackend.herokuapp.com/post/unlike/${postid}`, {
+        const response = await fetch(`https://clonebackend.herokuapp.com/post/unlike/${postid}`, {
             method:'PATCH',
             headers: {
                 'Content-type': 'application/json',
@@ -252,14 +343,21 @@ function likepost(e){
                 'userId': userid
             })
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            alert('unlike successful')
-            showposts()
-        })
+
+        const data = await response.json()
+
+        console.log(data);
+        alert('unlike successful')
+        showposts()
+
+        // .then(res => res.json())
+        // .then(data => {
+        //     console.log(data);
+        //     alert('unlike successful')
+        //     showposts()
+        // })
     }else{
-        fetch(`https://clonebackend.herokuapp.com/post/like/${postid}`, {
+        const response = await fetch(`https://clonebackend.herokuapp.com/post/like/${postid}`, {
             method:'PATCH',
             headers: {
                 'Content-type': 'application/json',
@@ -268,12 +366,19 @@ function likepost(e){
                 'userId': userid
             })
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            alert('like successful')
-            showposts()
-        })
+
+        const data = await response.json()
+
+        console.log(data);
+        alert('like successful')
+        showposts()
+
+        // .then(res => res.json())
+        // .then(data => {
+        //     console.log(data);
+        //     alert('like successful')
+        //     showposts()
+        // })
     }
 }
 
@@ -322,12 +427,13 @@ function postunlike(){}
 
 showposts()
 
-function showusers(){
-    fetch(`https://clonebackend.herokuapp.com/user/`, {
+async function showusers(){
+    const response = await fetch(`https://clonebackend.herokuapp.com/user/`, {
     })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data);
+
+    const data = await response.json()
+
+    console.log(data);
         document.querySelector('.users').innerHTML = ``
         data.data.forEach(user => {
             console.log(`followers => ${user.followers}`)
@@ -362,41 +468,93 @@ function showusers(){
         });
         document.querySelectorAll('.followbutton').forEach(button => button.addEventListener('click', followuser))
         document.querySelectorAll('.user img').forEach(button => button.addEventListener('click', openusermodal))
-    })
+
+    // .then(res => res.json())
+    // .then(data => {
+    //     console.log(data);
+    //     document.querySelector('.users').innerHTML = ``
+    //     data.data.forEach(user => {
+    //         console.log(`followers => ${user.followers}`)
+    //         let followers
+    //         if (user.followers){
+    //             if (user['followers'].split().map(Number)[0]){
+    //                 followers = user['followers'].split().map(Number)
+    //                 console.log(followers)
+    //                 console.log('not empty 1')
+    //             }
+    //             else{
+    //                 followers = user['followers'].substring().slice(0, -1).split(', ')
+    //                 console.log(followers)
+    //                 console.log("not empty more")
+    //             }
+    //         }
+    //         if (!user.followers){
+    //             followers = ''
+    //             console.log('empty')
+    //         }
+    //         document.querySelector('.users').innerHTML += `
+    //             <div class='user'>
+    //                 <img src='${user.profile_image}' id='${user.userId}' alt='profile image'>
+    //                 <div class='user-data'>
+    //                     <span class='user-username'>${user.username}</span>
+    //                     <span class='user-tag'>${user.tag}</span>
+    //                 </div>
+    //                 <div class='followbutton fl${user.userId}' id='${user.userId}'>follow</div>
+    //             </div>
+    //         `;
+    //         userfollowed(followers, user.userId)
+    //     });
+    //     document.querySelectorAll('.followbutton').forEach(button => button.addEventListener('click', followuser))
+    //     document.querySelectorAll('.user img').forEach(button => button.addEventListener('click', openusermodal))
+    // })
 }
 
 showusers()
 
-function followuser(e){
+async function followuser(e){
     let followingid = e.target.id
     let userid = userlogin.userId
     if (e.target.classList[2]){
-        fetch(`https://clonebackend.herokuapp.com/user/unfollow/${followingid}/${userid}/`, {
+        const response = await fetch(`https://clonebackend.herokuapp.com/user/unfollow/${followingid}/${userid}/`, {
             method:'PATCH',
             headers: {
                 'Content-type': 'application/json',
             }
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data);
-            alert('unfollow successful')
-            showusers()
-        })
+
+        const data = await response.json()
+
+        console.log(data);
+        alert('unfollow successful')
+        showusers()
+
+        // .then(res => res.json())
+        // .then(data => {
+        //     console.log(data);
+        //     alert('unfollow successful')
+        //     showusers()
+        // })
     }
     else{
-    fetch(`https://clonebackend.herokuapp.com/user/follow/${followingid}/${userid}/`, {
-        method:'PATCH',
-        headers: {
-            'Content-type': 'application/json',
-        }
-    })
-    .then(res => res.json())
-    .then(data => {
+        const response = await fetch(`https://clonebackend.herokuapp.com/user/follow/${followingid}/${userid}/`, {
+            method:'PATCH',
+            headers: {
+                'Content-type': 'application/json',
+            }
+        })
+
+        const data = await response.json()
+
         console.log(data);
         alert('follow successful')
         showusers()
-    })
+
+        // .then(res => res.json())
+        // .then(data => {
+        //     console.log(data);
+        //     alert('follow successful')
+        //     showusers()
+        // })
     }
 }
 
@@ -549,7 +707,7 @@ function removeimg(option) {
     }
 }
 
-function createpost(){
+async function createpost(){
     let post = postdata()
     console.log(postdata())
     let postobject = {}
@@ -634,23 +792,33 @@ function createpost(){
        alert('Post must at least include text or an image')
        return
    }
-    fetch(`https://clonebackend.herokuapp.com/post/${post.userid}/`,{
+    const response = await fetch(`https://clonebackend.herokuapp.com/post/${post.userid}/`,{
         method:'POST',
         body: JSON.stringify(postobject),
         headers: {
             'Content-Type': 'application/json; charset=utf-8'
         }
     })
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
-        console.log(`here is post object`)
-        console.log(postobject)
-        console.log(post.text)
-        alert('Post Made successfully')
-        showposts()
-    }
-    )
+
+    const data = await response.json()
+
+    console.log(data)
+    console.log(`here is post object`)
+    console.log(postobject)
+    console.log(post.text)
+    alert('Post Made successfully')
+    showposts()
+
+    // .then(res => res.json())
+    // .then(data => {
+    //     console.log(data)
+    //     console.log(`here is post object`)
+    //     console.log(postobject)
+    //     console.log(post.text)
+    //     alert('Post Made successfully')
+    //     showposts()
+    // }
+    // )
     ;
 }
 
@@ -667,12 +835,12 @@ function closepostmodal(){
     document.querySelector('.postmodal').classList.toggle('active')
 }
 
-function viewcomments(){
+async function viewcomments(){
     let postid = document.querySelector('.postmodal .post').id
-    fetch(`https://clonebackend.herokuapp.com/post/reply/${postid}`)
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
+    const response = await fetch(`https://clonebackend.herokuapp.com/post/reply/${postid}`)
+    const data = await response.json()
+
+    console.log(data)
         console.log('monkey?')
         if (data.data){
             document.querySelector('.postcommentsbody').innerHTML = ''
@@ -696,16 +864,43 @@ function viewcomments(){
         if(data.data.length == 0){
             document.querySelector('.postcommentsbody').innerHTML = '<div class="nocomments">Nothing here yet.</div>'
         }
-    })
+
+    // .then(res => res.json())
+    // .then(data => {
+    //     console.log(data)
+    //     console.log('monkey?')
+    //     if (data.data){
+    //         document.querySelector('.postcommentsbody').innerHTML = ''
+    //         data.data.forEach(comment => {
+    //             document.querySelector('.postcommentsbody').innerHTML += `
+    //                 <div class='postcomment'>
+    //                     <div class='com-usericon'>
+    //                         <img src='${comment.profile_image}' alt='Profile image'/>
+    //                     </div>
+    //                     <div class='com-username-tag'>
+    //                         <div class='com-username'>${comment.username}</div>
+    //                         <div class='com-tag'>@${comment.tag}</div>
+    //                     </div>
+    //                     <div class='com-text'>
+    //                         <p>${comment.text}</p>
+    //                     </div>
+    //                 </div>
+    //             `    
+    //         })
+    //     }
+    //     if(data.data.length == 0){
+    //         document.querySelector('.postcommentsbody').innerHTML = '<div class="nocomments">Nothing here yet.</div>'
+    //     }
+    // })
 }
 
-function addcomment(){
+async function addcomment(){
     let commenttext = document.querySelector('.addcommenttext').value
     if (commenttext == ''){
         alert('Comment must include text.')
         return
     }else{
-        fetch(`https://clonebackend.herokuapp.com/post/reply/`,{
+        const response = await fetch(`https://clonebackend.herokuapp.com/post/reply/`,{
         method:'POST',
         body: JSON.stringify({
             'postId': document.querySelector('.postmodal .post').id,
@@ -716,109 +911,205 @@ function addcomment(){
             'Content-Type': 'application/json; charset=utf-8'
         }
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            viewcomments()
-        })
+
+        const data = await response.json()
+
+        console.log(data)
+        viewcomments()
+
+        // .then(res => res.json())
+        // .then(data => {
+        //     console.log(data)
+        //     viewcomments()
+        // })
     }
 }
 
-function openusermodal(e){
+async function openusermodal(e){
     let userId = e.target.id
     console.log(userId)
     document.querySelector('.usermodal').classList.toggle('active')
-    fetch(`https://clonebackend.herokuapp.com/user/${userId}/`)
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
-        let userdetails = data.data
-        let posts = data.posts
-        let following
-        let followers
-        if (userdetails.following){
-            following = userdetails['following'].substring(1).slice(0, -1).split(',')
-            console.log('followings showing')
-        }
-        if (!userdetails.following){
-            following = ''
-            console.log('worked')
-        }
-        if (userdetails.followers){
-            followers = userdetails['followers'].substring(1).slice(0, -1).split(',')
-            console.log('followers showing')
-        }
-        if (!userdetails.followers){
-            followers = ''
-            console.log('worked')
-        }
-        document.querySelector('.modalusercontainer').innerHTML = `
-            <div class='modaluser'>
-                <div class='modaluser-icon'>
-                    <img src='${userdetails.profile_image}' alt='Profile Image' />
+    const response = await fetch(`https://clonebackend.herokuapp.com/user/${userId}/`)
+    const data = await response.json()
+
+    console.log(data)
+    let userdetails = data.data
+    let posts = data.posts
+    let following
+    let followers
+    if (userdetails.following){
+        following = userdetails['following'].substring(1).slice(0, -1).split(',')
+        console.log('followings showing')
+    }
+    if (!userdetails.following){
+        following = ''
+        console.log('worked')
+    }
+    if (userdetails.followers){
+        followers = userdetails['followers'].substring(1).slice(0, -1).split(',')
+        console.log('followers showing')
+    }
+    if (!userdetails.followers){
+        followers = ''
+        console.log('worked')
+    }
+    document.querySelector('.modalusercontainer').innerHTML = `
+        <div class='modaluser'>
+            <div class='modaluser-icon'>
+                <img src='${userdetails.profile_image}' alt='Profile Image' />
+            </div>
+            <div class='modaluser-name-tag'>
+                <div class='modaluser-name'>${userdetails.username}</div>
+                <div class='modaluser-tag'>@${userdetails.tag}</div>
+            </div>
+            ${userdetails.bio ? `<div class='modaluser-bio'>${userdetails.bio}</div>` : ''}
+            <div class='follows'>
+                <div class='modaluser-followings'>Following <span>${following.length}</span></div>
+                <div class='modaluser-followers'>Followers <span>${followers.length}</span></div>
+            </div>
+        </div>
+    `;
+    posts.forEach(post => {
+        let likeslist
+            if (post.liked_by){
+                if (post['liked_by'].split().map(Number)[0]){
+                    likeslist = post['liked_by'].split().map(Number)
+                    console.log('not empty1')
+                }
+                else{
+                    likeslist = post['liked_by'].toString().substring(1).slice(0, -1).split(', ')
+                    console.log(likeslist)
+                    console.log('not empty2')
+                }
+            }
+            if (!post.liked_by){
+                likeslist = ''
+                console.log('empty')
+            }
+        document.querySelector('.modalusercontainer').innerHTML += `
+        <div class='post' id='post${post.postId}'>
+            <div class='postleftsection'>
+                <img src='${userdetails.profile_image}' alt='profile image'>
+            </div>
+            <div class='postrightsection'>
+                <div class='postuserdetails'>
+                    <div class='postusername'>
+                        ${userdetails.username}
+                    </div> 
+                    <div class='posttag'>
+                        @${userdetails.tag}
+                    </div>
                 </div>
-                <div class='modaluser-name-tag'>
-                    <div class='modaluser-name'>${userdetails.username}</div>
-                    <div class='modaluser-tag'>@${userdetails.tag}</div>
-                </div>
-                ${userdetails.bio ? `<div class='modaluser-bio'>${userdetails.bio}</div>` : ''}
-                <div class='follows'>
-                    <div class='modaluser-followings'>Following <span>${following.length}</span></div>
-                    <div class='modaluser-followers'>Followers <span>${followers.length}</span></div>
+                <div class='textandimage'>
+                    <p class='ptext'>${post.text}</p>
+                    <div class='postimages'>
+                        <img src='${post.image1}' class='pimage1' alt='image1'/>
+                        <img src='${post.image2}' class='pimage2' alt='image1'/>
+                        <img src='${post.image3}' class='pimage3' alt='image1'/>
+                        <img src='${post.image4}' class='pimage4' alt='image1'/>
+                    </div>
+                    <div class='timecreated'>${post.datetime}</div>
                 </div>
             </div>
+            <div class='bottomsection'>
+                <div class='likepost lp${post.postId}' id='${post.postId}'>Like <span class='postlikes'>${likeslist.length}</span></div>
+                <div class='viewpost' id='${post.postId}'>View post</div>
+            </div> 
+        </div>
         `;
-        posts.forEach(post => {
-            let likeslist
-                if (post.liked_by){
-                    if (post['liked_by'].split().map(Number)[0]){
-                        likeslist = post['liked_by'].split().map(Number)
-                        console.log('not empty1')
-                    }
-                    else{
-                        likeslist = post['liked_by'].toString().substring(1).slice(0, -1).split(', ')
-                        console.log(likeslist)
-                        console.log('not empty2')
-                    }
-                }
-                if (!post.liked_by){
-                    likeslist = ''
-                    console.log('empty')
-                }
-            document.querySelector('.modalusercontainer').innerHTML += `
-            <div class='post' id='post${post.postId}'>
-                <div class='postleftsection'>
-                    <img src='${userdetails.profile_image}' alt='profile image'>
-                </div>
-                <div class='postrightsection'>
-                    <div class='postuserdetails'>
-                        <div class='postusername'>
-                            ${userdetails.username}
-                        </div> 
-                        <div class='posttag'>
-                            @${userdetails.tag}
-                        </div>
-                    </div>
-                    <div class='textandimage'>
-                        <p class='ptext'>${post.text}</p>
-                        <div class='postimages'>
-                            <img src='${post.image1}' class='pimage1' alt='image1'/>
-                            <img src='${post.image2}' class='pimage2' alt='image1'/>
-                            <img src='${post.image3}' class='pimage3' alt='image1'/>
-                            <img src='${post.image4}' class='pimage4' alt='image1'/>
-                        </div>
-                        <div class='timecreated'>${post.datetime}</div>
-                    </div>
-                </div>
-                <div class='bottomsection'>
-                    <div class='likepost lp${post.postId}' id='${post.postId}'>Like <span class='postlikes'>${likeslist.length}</span></div>
-                    <div class='viewpost' id='${post.postId}'>View post</div>
-                </div> 
-            </div>
-            `;
-            postclass()
-        })
+        postclass()
     })
+
+    // .then(res => res.json())
+    // .then(data => {
+    //     console.log(data)
+    //     let userdetails = data.data
+    //     let posts = data.posts
+    //     let following
+    //     let followers
+    //     if (userdetails.following){
+    //         following = userdetails['following'].substring(1).slice(0, -1).split(',')
+    //         console.log('followings showing')
+    //     }
+    //     if (!userdetails.following){
+    //         following = ''
+    //         console.log('worked')
+    //     }
+    //     if (userdetails.followers){
+    //         followers = userdetails['followers'].substring(1).slice(0, -1).split(',')
+    //         console.log('followers showing')
+    //     }
+    //     if (!userdetails.followers){
+    //         followers = ''
+    //         console.log('worked')
+    //     }
+    //     document.querySelector('.modalusercontainer').innerHTML = `
+    //         <div class='modaluser'>
+    //             <div class='modaluser-icon'>
+    //                 <img src='${userdetails.profile_image}' alt='Profile Image' />
+    //             </div>
+    //             <div class='modaluser-name-tag'>
+    //                 <div class='modaluser-name'>${userdetails.username}</div>
+    //                 <div class='modaluser-tag'>@${userdetails.tag}</div>
+    //             </div>
+    //             ${userdetails.bio ? `<div class='modaluser-bio'>${userdetails.bio}</div>` : ''}
+    //             <div class='follows'>
+    //                 <div class='modaluser-followings'>Following <span>${following.length}</span></div>
+    //                 <div class='modaluser-followers'>Followers <span>${followers.length}</span></div>
+    //             </div>
+    //         </div>
+    //     `;
+    //     posts.forEach(post => {
+    //         let likeslist
+    //             if (post.liked_by){
+    //                 if (post['liked_by'].split().map(Number)[0]){
+    //                     likeslist = post['liked_by'].split().map(Number)
+    //                     console.log('not empty1')
+    //                 }
+    //                 else{
+    //                     likeslist = post['liked_by'].toString().substring(1).slice(0, -1).split(', ')
+    //                     console.log(likeslist)
+    //                     console.log('not empty2')
+    //                 }
+    //             }
+    //             if (!post.liked_by){
+    //                 likeslist = ''
+    //                 console.log('empty')
+    //             }
+    //         document.querySelector('.modalusercontainer').innerHTML += `
+    //         <div class='post' id='post${post.postId}'>
+    //             <div class='postleftsection'>
+    //                 <img src='${userdetails.profile_image}' alt='profile image'>
+    //             </div>
+    //             <div class='postrightsection'>
+    //                 <div class='postuserdetails'>
+    //                     <div class='postusername'>
+    //                         ${userdetails.username}
+    //                     </div> 
+    //                     <div class='posttag'>
+    //                         @${userdetails.tag}
+    //                     </div>
+    //                 </div>
+    //                 <div class='textandimage'>
+    //                     <p class='ptext'>${post.text}</p>
+    //                     <div class='postimages'>
+    //                         <img src='${post.image1}' class='pimage1' alt='image1'/>
+    //                         <img src='${post.image2}' class='pimage2' alt='image1'/>
+    //                         <img src='${post.image3}' class='pimage3' alt='image1'/>
+    //                         <img src='${post.image4}' class='pimage4' alt='image1'/>
+    //                     </div>
+    //                     <div class='timecreated'>${post.datetime}</div>
+    //                 </div>
+    //             </div>
+    //             <div class='bottomsection'>
+    //                 <div class='likepost lp${post.postId}' id='${post.postId}'>Like <span class='postlikes'>${likeslist.length}</span></div>
+    //                 <div class='viewpost' id='${post.postId}'>View post</div>
+    //             </div> 
+    //         </div>
+    //         `;
+    //         postclass()
+    //     })
+    // })
     // document.querySelector('.usermodalcontainer').innerHTML = document.querySelector(`#post${postid}`).innerHTML
 
 }
