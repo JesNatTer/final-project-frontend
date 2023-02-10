@@ -5,7 +5,7 @@ const user = JSON.parse(window.localStorage['userdetails'])
 async function userdata(){
     let userId = user.userId
     console.log(userId)
-    const response = await fetch(`https://clonebackend.herokuapp.com/user/${userId}/`)
+    const response = await fetch(`https://clonebackend.onrender.com/${userId}/`)
     const data = await response.json()
 
     console.log(data)
@@ -374,7 +374,7 @@ function uploadimage() {
 }
 
 async function edituser(){
-    const response = await fetch(`https://clonebackend.herokuapp.com/user/${user.userId}/`, {
+    const response = await fetch(`https://clonebackend.onrender.com/user/${user.userId}/`, {
         method:'PUT',
         body: JSON.stringify({
             "full_name": document.querySelector('#efullname').value,
@@ -404,7 +404,7 @@ async function edituser(){
 }
 
 async function deleteuser(){
-    const response = await fetch(`https://clonebackend.herokuapp.com/user/delete/${user.userId}/`)
+    const response = await fetch(`https://clonebackend.onrender.com/user/delete/${user.userId}/`)
     const data = await response.json()
     console.log(data);
     alert('Delete successful!')
