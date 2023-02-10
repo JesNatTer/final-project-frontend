@@ -1,7 +1,7 @@
 const mystorage = window.localStorage
 
 async function login(){
-    const response = await fetch(`https://clonebackend.herokuapp.com/user/`, {
+    const response = await fetch(`https://clonebackend.onrender.com/user/`, {
         method:'PATCH',
         body: JSON.stringify({
             "email": document.querySelector('#semail').value,
@@ -38,7 +38,7 @@ async function login(){
 }
 
 async function register(){
-    const response = await fetch(`https://clonebackend.herokuapp.com/user/`, {
+    const response = await fetch(`https://clonebackend.onrender.com/user/`, {
         method:'POST',
         body: JSON.stringify({
             "email": document.querySelector('#remail').value,
