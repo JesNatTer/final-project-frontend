@@ -5,7 +5,7 @@ const user = JSON.parse(window.localStorage['userdetails'])
 async function userdata(){
     let userId = user.userId
     console.log(userId)
-    const response = await fetch(`https://clonebackend.onrender.com/${userId}/`)
+    const response = await fetch(`https://clonebackend.onrender.com/user/${userId}/`)
     const data = await response.json()
 
     console.log(data)
