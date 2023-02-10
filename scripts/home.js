@@ -15,7 +15,7 @@ function postdata(){
 }
 
 async function profiledetails(){
-    const response = await fetch(`https://clonebackend.herokuapp.com/user/${userlogin.userId}/`)
+    const response = await fetch(`https://clonebackend.onrender.com/user/${userlogin.userId}/`)
     const data = await response.json()
     
     console.log(data)
@@ -118,7 +118,7 @@ console.log(userlogin.following)
 
 async function showposts(){
     userid = userlogin.userId
-    const response = await fetch(`https://clonebackend.herokuapp.com/post/${userid}/`, {
+    const response = await fetch(`https://clonebackend.onrender.com/post/${userid}/`, {
     })
 
     const data = await response.json()
@@ -354,7 +354,7 @@ async function likepost(e){
     let userid = user.userId
     let postid = e.target.id
     if (e.target.classList[2]){
-        const response = await fetch(`https://clonebackend.herokuapp.com/post/unlike/${postid}`, {
+        const response = await fetch(`https://clonebackend.onrender.com/post/unlike/${postid}`, {
             method:'PATCH',
             headers: {
                 'Content-type': 'application/json',
@@ -377,7 +377,7 @@ async function likepost(e){
         //     showposts()
         // })
     }else{
-        const response = await fetch(`https://clonebackend.herokuapp.com/post/like/${postid}`, {
+        const response = await fetch(`https://clonebackend.onrender.com/post/like/${postid}`, {
             method:'PATCH',
             headers: {
                 'Content-type': 'application/json',
@@ -448,7 +448,7 @@ function postunlike(){}
 showposts()
 
 async function showusers(){
-    const response = await fetch(`https://clonebackend.herokuapp.com/user/`, {
+    const response = await fetch(`https://clonebackend.onrender.com/user/`, {
     })
 
     const data = await response.json()
@@ -535,7 +535,7 @@ async function followuser(e){
     let followingid = e.target.id
     let userid = userlogin.userId
     if (e.target.classList[2]){
-        const response = await fetch(`https://clonebackend.herokuapp.com/user/unfollow/${followingid}/${userid}/`, {
+        const response = await fetch(`https://clonebackend.onrender.com/user/unfollow/${followingid}/${userid}/`, {
             method:'PATCH',
             headers: {
                 'Content-type': 'application/json',
@@ -556,7 +556,7 @@ async function followuser(e){
         // })
     }
     else{
-        const response = await fetch(`https://clonebackend.herokuapp.com/user/follow/${followingid}/${userid}/`, {
+        const response = await fetch(`https://clonebackend.onrender.com/user/follow/${followingid}/${userid}/`, {
             method:'PATCH',
             headers: {
                 'Content-type': 'application/json',
@@ -812,7 +812,7 @@ async function createpost(){
        alert('Post must at least include text or an image')
        return
    }
-    const response = await fetch(`https://clonebackend.herokuapp.com/post/${post.userid}/`,{
+    const response = await fetch(`https://clonebackend.onrender.com/post/${post.userid}/`,{
         method:'POST',
         body: JSON.stringify(postobject),
         headers: {
@@ -857,7 +857,7 @@ function closepostmodal(){
 
 async function viewcomments(){
     let postid = document.querySelector('.postmodal .post').id
-    const response = await fetch(`https://clonebackend.herokuapp.com/post/reply/${postid}`)
+    const response = await fetch(`https://clonebackend.onrender.com/post/reply/${postid}`)
     const data = await response.json()
 
     console.log(data)
@@ -920,7 +920,7 @@ async function addcomment(){
         alert('Comment must include text.')
         return
     }else{
-        const response = await fetch(`https://clonebackend.herokuapp.com/post/reply/`,{
+        const response = await fetch(`https://clonebackend.onrender.com/post/reply/`,{
         method:'POST',
         body: JSON.stringify({
             'postId': document.querySelector('.postmodal .post').id,
@@ -949,7 +949,7 @@ async function openusermodal(e){
     let userId = e.target.id
     console.log(userId)
     document.querySelector('.usermodal').classList.toggle('active')
-    const response = await fetch(`https://clonebackend.herokuapp.com/user/${userId}/`)
+    const response = await fetch(`https://clonebackend.onrender.com/user/${userId}/`)
     const data = await response.json()
 
     console.log(data)
